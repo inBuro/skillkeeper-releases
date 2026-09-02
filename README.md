@@ -15,20 +15,28 @@ Flat, matching Sparkle's own `generate_appcast` convention (no per-version subfo
 ## Publishing a release
 
 ```
-swift build -c release   # in app/
-scripts/deploy.sh        # installs + re-signs the local .app
+scripts/release.sh       # in skilloptimizer/ — build, sign with Developer ID, notarize, staple;
+                          # writes skilloptimizer/raw/SkillKeeper-<version>.zip, does NOT touch this repo
 
-# Sparkle auto-update artifact:
-ditto -c -k --sequesterRsrc --keepParent ~/Applications/SkillKeeper.app SkillKeeper.zip
+cp skilloptimizer/raw/SkillKeeper-<version>.zip SkillKeeper.zip
+
+# generate_appcast errors on "duplicate bundle version" if SkillKeeper.dmg sits in this directory
+# at the same time (both would contain the same version) — move it out first, back in after.
+mv SkillKeeper.dmg /tmp/
 generate_appcast .       # Sparkle tool, ships in the SPM artifact bundle — signs with the Keychain EdDSA key
 
-# Human-facing download artifact:
+# Human-facing download artifact — rebuild from the same notarized .app inside the zip just copied in,
+# not a separate build (`scripts/release.sh` doesn't produce a .app on disk — it stages in a temp dir
+# that's deleted on exit — so extract it back out of the zip):
 rm -rf /tmp/dmg_staging && mkdir /tmp/dmg_staging
-cp -R ~/Applications/SkillKeeper.app /tmp/dmg_staging/
+ditto -x -k SkillKeeper.zip /tmp/dmg_staging
 ln -s /Applications /tmp/dmg_staging/Applications
 hdiutil create -volname "SkillKeeper" -srcfolder /tmp/dmg_staging -ov -format UDZO SkillKeeper.dmg
 
 git add -A && git commit && git push
 ```
 
-Currently ad-hoc signed only, not notarized — first launch after an update still shows the Gatekeeper "unknown developer" warning until Phase 1-2 (Developer ID + notarization, `docs/roadmap_distribution.md`) land. Not a blocker for the update mechanism itself, which is Sparkle's own EdDSA signature, independent of Apple's.
+**Signed with a real Developer ID certificate and notarized since 2026-09-02** (`docs/roadmap_distribution.md`
+Фаза 2) — no more Gatekeeper "unknown developer" warning on first launch, `spctl` reports
+`source=Notarized Developer ID`. Sparkle's own EdDSA signature (independent of Apple's notarization) still
+covers the update mechanism itself, as before.
