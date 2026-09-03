@@ -3,22 +3,13 @@
     <channel>
         <title>SkillKeeper</title>
         <item>
-            <title>1.1</title>
-            <pubDate>Wed, 02 Sep 2026 19:38:08 +0700</pubDate>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3630326" type="application/octet-stream" sparkle:edSignature="OxbxAmS0WHweaFRq8N8kDw2dNQYf6KEGeEo9C4I7nNF1caVdfg0wLIg0iyadwGMwqy9KNZora8yQ1b+ApE1vBg=="/>
-        </item>
-        <item>
             <title>1.0</title>
-            <pubDate>Mon, 31 Aug 2026 19:35:54 +0700</pubDate>
-            <sparkle:version>1</sparkle:version>
+            <pubDate>Wed, 02 Sep 2026 19:38:08 +0700</pubDate>
+            <sparkle:version>3</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3617615" type="application/octet-stream" sparkle:edSignature="WHTVRDdLw48wAOkFXXZOAzOcTWxs3eFTYPvMY7QkVImQRRD5GlIFnqkHwUjD7gP+pwKt6sXptrVps96l+5sfDA=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3630346" type="application/octet-stream" sparkle:edSignature="wt1jamcHF8Wq99ajQWLqjusEyyzDdAqIYjh4qDR6g8li94dIDEp7eN8Ri/h7OCB74l3vK9421SMLcyfatJlsBA=="/>
         </item>
     </channel>
 </rss>
