@@ -4,12 +4,24 @@
         <title>SkillKeeper</title>
         <item>
             <title>1.0</title>
+            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2400481" type="application/octet-stream" sparkle:edSignature="TZer5i2ik4lcYyQrpGmm+NdOEQ6BQIie3RwA+bIR6N5huPo4ja0Nbn/AEQDLqNSzkwEqhOhC2BebcrNrgyMWAg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper5-4.delta" sparkle:deltaFrom="4" length="234082" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="980432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="SaXgA7wFlWzujSSoQFM4Zon0ODJ/egj/qLjJ28d8C6BT2t/szsfZzgOulrTGFe/q0t5+UrzEO7Spoj6uTyoPAg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>1.0</title>
             <pubDate>Fri, 04 Sep 2026 16:56:56 +0700</pubDate>
             <sparkle:version>4</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3765455" type="application/octet-stream" sparkle:edSignature="2gOyKoMiii0yWW4VkDeUOLNYzuEa5D2AuJ6FEb0VLnaZR7mj4E2xPJgaT1ZU/DdfAZv07rQ7Gkx09kMwrK0MCA=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.dmg" length="4082207" type="application/octet-stream" sparkle:edSignature="SzfDoFmck6oN7suNvMR5ETQS9LFyHhOzVR8SG+SNASgRN2EljM8I8ByY1M/f4rKji5kn1dd+6UEIaQ1zRg4RAQ=="/>
         </item>
         <item>
             <title>1.0</title>
