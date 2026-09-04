@@ -5,11 +5,23 @@
         <item>
             <title>1.0</title>
             <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2399139" type="application/octet-stream" sparkle:edSignature="NDk1WdSd0dmYxAAf6PlCFf9gAVsWfKpk9ll4yhPglGVN+EWMMnux1QsRb5qdBKi63ejFOo374sF5aQn7R0TJBA=="/>
+            <sparkle:deltas>
+                <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper6-5.delta" sparkle:deltaFrom="5" length="143594" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="980432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="1qbi92+xcwOVIgoy5gyDeHZNF+/nOmU+Ls8bEQ62R563CoOp7Q7YCFBYOhrzquRK6OKGf1SNqOYaNQyyNjqHCA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>1.0</title>
+            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
             <sparkle:version>5</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2400481" type="application/octet-stream" sparkle:edSignature="TZer5i2ik4lcYyQrpGmm+NdOEQ6BQIie3RwA+bIR6N5huPo4ja0Nbn/AEQDLqNSzkwEqhOhC2BebcrNrgyMWAg=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.dmg" length="2686717" type="application/octet-stream" sparkle:edSignature="HX/vjQCPYNpf5tFckvo9UO3U29az4pQ016Q2tUGdnj8crYmNeatxgVtaTXb2hEvjAfsXgZrDcIC7Ps/YU5MyAg=="/>
             <sparkle:deltas>
                 <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper5-4.delta" sparkle:deltaFrom="4" length="234082" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="980432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="SaXgA7wFlWzujSSoQFM4Zon0ODJ/egj/qLjJ28d8C6BT2t/szsfZzgOulrTGFe/q0t5+UrzEO7Spoj6uTyoPAg=="/>
             </sparkle:deltas>
@@ -22,15 +34,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.dmg" length="4082207" type="application/octet-stream" sparkle:edSignature="SzfDoFmck6oN7suNvMR5ETQS9LFyHhOzVR8SG+SNASgRN2EljM8I8ByY1M/f4rKji5kn1dd+6UEIaQ1zRg4RAQ=="/>
-        </item>
-        <item>
-            <title>1.0</title>
-            <pubDate>Wed, 02 Sep 2026 19:38:08 +0700</pubDate>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3630346" type="application/octet-stream" sparkle:edSignature="wt1jamcHF8Wq99ajQWLqjusEyyzDdAqIYjh4qDR6g8li94dIDEp7eN8Ri/h7OCB74l3vK9421SMLcyfatJlsBA=="/>
         </item>
     </channel>
 </rss>
