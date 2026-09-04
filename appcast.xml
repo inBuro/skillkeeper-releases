@@ -4,6 +4,15 @@
         <title>SkillKeeper</title>
         <item>
             <title>1.0</title>
+            <pubDate>Fri, 04 Sep 2026 16:56:56 +0700</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3765455" type="application/octet-stream" sparkle:edSignature="2gOyKoMiii0yWW4VkDeUOLNYzuEa5D2AuJ6FEb0VLnaZR7mj4E2xPJgaT1ZU/DdfAZv07rQ7Gkx09kMwrK0MCA=="/>
+        </item>
+        <item>
+            <title>1.0</title>
             <pubDate>Wed, 02 Sep 2026 19:38:08 +0700</pubDate>
             <sparkle:version>3</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
