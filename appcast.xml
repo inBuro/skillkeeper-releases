@@ -5,6 +5,15 @@
         <item>
             <title>1.0</title>
             <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2399145" type="application/octet-stream" sparkle:edSignature="V263sJr7KE/eXZDPfg8DbUg1flzTyu//ZP+YXD0IjqXucWX4ek76kc1b3zLy6BtRl+yO1aB85qHO6j37q/KwBw=="/>
+        </item>
+        <item>
+            <title>1.0</title>
+            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
             <sparkle:version>6</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -22,15 +31,6 @@
             <sparkle:deltas>
                 <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper5-4.delta" sparkle:deltaFrom="4" length="234082" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="980432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="SaXgA7wFlWzujSSoQFM4Zon0ODJ/egj/qLjJ28d8C6BT2t/szsfZzgOulrTGFe/q0t5+UrzEO7Spoj6uTyoPAg=="/>
             </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0</title>
-            <pubDate>Fri, 04 Sep 2026 16:56:56 +0700</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.dmg" length="4082207" type="application/octet-stream" sparkle:edSignature="SzfDoFmck6oN7suNvMR5ETQS9LFyHhOzVR8SG+SNASgRN2EljM8I8ByY1M/f4rKji5kn1dd+6UEIaQ1zRg4RAQ=="/>
         </item>
     </channel>
 </rss>
