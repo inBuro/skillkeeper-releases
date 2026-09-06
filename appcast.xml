@@ -5,6 +5,15 @@
         <item>
             <title>1.0</title>
             <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2520700" type="application/octet-stream" sparkle:edSignature="fEw2dSHOUEeR4Q62paMH58T056dBzIXN9p6NThcXuwbnfxakCrKkshWM2XN/KammM/DuPrvXs7z1U5pvHah4CQ=="/>
+        </item>
+        <item>
+            <title>1.0</title>
+            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
             <sparkle:version>8</sparkle:version>
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -19,15 +28,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2399145" type="application/octet-stream" sparkle:edSignature="V263sJr7KE/eXZDPfg8DbUg1flzTyu//ZP+YXD0IjqXucWX4ek76kc1b3zLy6BtRl+yO1aB85qHO6j37q/KwBw=="/>
-        </item>
-        <item>
-            <title>1.0</title>
-            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2399139" type="application/octet-stream" sparkle:edSignature="NDk1WdSd0dmYxAAf6PlCFf9gAVsWfKpk9ll4yhPglGVN+EWMMnux1QsRb5qdBKi63ejFOo374sF5aQn7R0TJBA=="/>
         </item>
     </channel>
 </rss>
