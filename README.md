@@ -10,7 +10,7 @@ Flat, matching Sparkle's own `generate_appcast` convention (no per-version subfo
 
 - `appcast.xml` — Sparkle feed, referenced by `SUFeedURL` in the app's `Info.plist`. Points at `SkillKeeper.zip`.
 - `SkillKeeper.zip` (+ future `SkillKeeper 1.1.zip` etc.) — Sparkle's own auto-update enclosure, found by `generate_appcast` scanning this directory. Not meant for humans to click — no volume icon, no "drag to Applications" affordance.
-- `SkillKeeper.dmg` — the human-facing first download, linked from the site's "Download" button. Plain disk image (app + `Applications` symlink), no custom background — round-1 scope, see Stage C. Kept in sync with the `.zip` by hand on each release; Sparkle itself never reads this file.
+- `SkillKeeper.dmg` — the human-facing first download, linked from the site's "Download" button. Disk image (app + `Applications` symlink + arrow item) with a pinned icon layout — see Stage C. Kept in sync with the `.zip` by hand on each release; Sparkle itself never reads this file.
 
 ## Publishing a release
 
@@ -25,13 +25,15 @@ cp skilloptimizer/raw/SkillKeeper-<version>.zip SkillKeeper.zip
 mv SkillKeeper.dmg /tmp/
 generate_appcast .       # Sparkle tool, ships in the SPM artifact bundle — signs with the Keychain EdDSA key
 
-# Human-facing download artifact — rebuild from the same notarized .app inside the zip just copied in,
-# not a separate build (`scripts/release.sh` doesn't produce a .app on disk — it stages in a temp dir
-# that's deleted on exit — so extract it back out of the zip):
-rm -rf /tmp/dmg_staging && mkdir /tmp/dmg_staging
-ditto -x -k SkillKeeper.zip /tmp/dmg_staging
-ln -s /Applications /tmp/dmg_staging/Applications
-hdiutil create -volname "SkillKeeper" -srcfolder /tmp/dmg_staging -ov -format UDZO SkillKeeper.dmg
+# Human-facing download artifact — rebuilt from the same notarized .app inside the zip just copied in,
+# not a separate build. The script pins the Finder layout (app left, arrow, Applications right, 128 px
+# icons, 600x400 window, no toolbar) via a .DS_Store; the arrow is a blank-named file whose custom icon
+# is rendered by scripts/dmg_arrow_icon.py from the Figma asset — not a window background: Finder paints
+# labels black whenever a background picture or colour is set, so the window keeps Finder's default
+# field (dark in dark mode, white in light) and its own label colour.
+# A bare `hdiutil create -srcfolder` ships none of this, and Finder then sorts the two items alphabetically — Applications first, app second (how 1.0–1.1 looked).
+# Eject any mounted SkillKeeper volume first — the script refuses to run over one.
+../skilloptimizer/scripts/make-dmg.sh SkillKeeper.zip SkillKeeper.dmg
 
 git add -A && git commit && git push
 ```
