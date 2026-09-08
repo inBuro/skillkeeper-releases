@@ -4,6 +4,15 @@
         <title>SkillKeeper</title>
         <item>
             <title>1.1</title>
+            <pubDate>Tue, 08 Sep 2026 19:28:51 +0700</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2543400" type="application/octet-stream" sparkle:edSignature="deTTjWW6nu6ujefrmwciojh4C0Nb9sCf2KP7Qu8uUwIyDjBKp21iNuIAQjbNa8CHSsGeGJ55QFKGXSUCDiZ1DQ=="/>
+        </item>
+        <item>
+            <title>1.1</title>
             <pubDate>Tue, 08 Sep 2026 18:49:39 +0700</pubDate>
             <sparkle:version>10</sparkle:version>
             <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
@@ -19,15 +28,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2520700" type="application/octet-stream" sparkle:edSignature="fEw2dSHOUEeR4Q62paMH58T056dBzIXN9p6NThcXuwbnfxakCrKkshWM2XN/KammM/DuPrvXs7z1U5pvHah4CQ=="/>
-        </item>
-        <item>
-            <title>1.0</title>
-            <pubDate>Fri, 04 Sep 2026 20:04:09 +0700</pubDate>
-            <sparkle:version>8</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2522663" type="application/octet-stream" sparkle:edSignature="JPnUUPaNkrjhZoDiokIpaSxB+yPIGbV+x2k3QD05DxpIBhlkxy2Mi71SUpy0sJjArakLd6E1iWEOh7lrjV4TBg=="/>
         </item>
     </channel>
 </rss>
