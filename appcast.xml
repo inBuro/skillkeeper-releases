@@ -3,6 +3,15 @@
     <channel>
         <title>SkillKeeper</title>
         <item>
+            <title>1.5</title>
+            <pubDate>Sun, 20 Sep 2026 22:28:39 +0700</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2762226" type="application/octet-stream" sparkle:edSignature="+qCOnsZhtuj7/4lZqD2KerY4Hc4/WO1wJFcN+0RmyHNQfV57g7s2dynewuaOho/81op1/RiC0AtQQF8XrxZzAQ=="/>
+        </item>
+        <item>
             <title>1.4</title>
             <pubDate>Thu, 17 Sep 2026 13:11:33 +0700</pubDate>
             <sparkle:version>16</sparkle:version>
@@ -19,15 +28,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2600624" type="application/octet-stream" sparkle:edSignature="h8+MKXhZ6fxq+vU3QhtZfyWJEs6YB1wuW8TXanrF6yxWF4ZkPzBFfankIIRjiQMSsKErn2biAzpciXeETrGgCQ=="/>
-        </item>
-        <item>
-            <title>1.3</title>
-            <pubDate>Tue, 15 Sep 2026 21:19:00 +0700</pubDate>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>1.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2600633" type="application/octet-stream" sparkle:edSignature="vgmmKXdPFRIxW4wxz4M23KYbL8KPc21zR8ChsgKlwTdoFJBgICYkjFsHT6gxOQUtQqqFw2Xs83ct5uRwXnc0Dw=="/>
         </item>
     </channel>
 </rss>
