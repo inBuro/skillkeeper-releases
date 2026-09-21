@@ -5,6 +5,7 @@
         <item>
             <title>1.5</title>
             <pubDate>Sun, 20 Sep 2026 22:28:39 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.5</h2><p class="date">Release date: 20 Sep 2026</p><h3>New in 1.5</h3><ul><li>Pause one of two look-alike skills to resolve a clash – the warning clears on the other, while the paused skill stays grey as a reminder.</li><li>Search the skills.sh store from the same field – tap the store button next to the X, or just stop typing, to see results by installs. One click copies the install command.</li><li>Right-click a skill to copy its slash command – /name for a skill, /router subskill for a subskill. Loop is now Option + right-click.</li><li>Pin by dragging – pull the popup away from the menu bar to turn it into a floating window that stays on top on every Space. The pin button is gone.</li><li>Archived Skills now keeps archived skills grouped, and Restore puts them back in their original group.</li><li>Minor UX/UI improvements, including a smoother sort change.</li></ul></body></html>]]></description>
             <sparkle:version>17</sparkle:version>
             <sparkle:shortVersionString>1.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -14,6 +15,7 @@
         <item>
             <title>1.4</title>
             <pubDate>Thu, 17 Sep 2026 13:11:33 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.4</h2><p class="date">Release date: 17 Sep 2026</p><h3>New in 1.4</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
             <sparkle:version>16</sparkle:version>
             <sparkle:shortVersionString>1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -23,6 +25,7 @@
         <item>
             <title>1.4</title>
             <pubDate>Tue, 15 Sep 2026 21:54:18 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.4</h2><p class="date">Release date: 15 Sep 2026</p><h3>New in 1.4</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
             <sparkle:version>15</sparkle:version>
             <sparkle:shortVersionString>1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
