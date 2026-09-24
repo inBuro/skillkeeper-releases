@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>1.6.1</title>
-            <pubDate>Thu, 24 Sep 2026 18:30:02 +0700</pubDate>
+            <pubDate>Fri, 25 Sep 2026 00:48:39 +0700</pubDate>
             <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.6.1</h2><p class="date">Release date: 24 Sep 2026</p><h3>New in 1.6.1</h3><ul><li>Watch it run – while a skill, agent or tool is working, its token count ticks up live and pulses softly.</li><li>Fixed high CPU use while the popup stayed open.</li><li>A second click on an agent now closes its details.</li></ul></body></html>]]></description>
-            <sparkle:version>19</sparkle:version>
+            <sparkle:version>20</sparkle:version>
             <sparkle:shortVersionString>1.6.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3279759" type="application/octet-stream" sparkle:edSignature="pEv8BfCvMHwWbDY6VQQzCNGcZUH9Ad3GNIz4CqAfhbya1n4iMRdB8zcOz+nuKdoNW9xMkACDzMKc9NMeus8OAw=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3284815" type="application/octet-stream" sparkle:edSignature="MCTD8bphxmJvEQLavJ/4aA0HeZDgQ/JgJTEX6qRWnUw4veUWKSJVxDEl8Vfhz87FAT+Rm+LeAoB2ulOMTYmDDw=="/>
         </item>
         <item>
             <title>1.6</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3248498" type="application/octet-stream" sparkle:edSignature="JUFO10Gc7OlUtcrYLqzTeXighQ6u/GfReai8VriNO8p2/DJC7pgR/wrTpeDanH0pPAhsh/2gzbCag659wg5XAQ=="/>
-        </item>
-        <item>
-            <title>1.5</title>
-            <pubDate>Sun, 20 Sep 2026 22:28:39 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.5</h2><p class="date">Release date: 20 Sep 2026</p><h3>New in 1.5</h3><ul><li>Pause one of two look-alike skills to resolve a clash – the warning clears on the other, while the paused skill stays grey as a reminder.</li><li>Search the skills.sh store from the same field – tap the store button next to the X, or just stop typing, to see results by installs. One click copies the install command.</li><li>Right-click a skill to copy its slash command – /name for a skill, /router subskill for a subskill. Loop is now Option + right-click.</li><li>Pin by dragging – pull the popup away from the menu bar to turn it into a floating window that stays on top on every Space. The pin button is gone.</li><li>Archived Skills now keeps archived skills grouped, and Restore puts them back in their original group.</li><li>Minor UX/UI improvements, including a smoother sort change.</li></ul></body></html>]]></description>
-            <sparkle:version>17</sparkle:version>
-            <sparkle:shortVersionString>1.5</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="2755066" type="application/octet-stream" sparkle:edSignature="wmYOFlaxr19t/StcgF5tMJu1qeFCj+7+cpt3CsPcAPlY1ofAObS/FlZK7uTYnKcZKfwrGT4WYjSulw5i8TwwAw=="/>
         </item>
     </channel>
 </rss>
