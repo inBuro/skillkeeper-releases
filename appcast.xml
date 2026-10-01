@@ -4,6 +4,16 @@
         <title>SkillKeeper</title>
         <item>
             <title>1.8</title>
+            <pubDate>Thu, 01 Oct 2026 11:06:43 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.8</h2><p class="date">Release date: 30 Sep 2026</p><h3>New in 1.8</h3><ul><li>Codex, Cursor and Gemini CLI – pick your tool in Settings → AI Tools &amp; Folders</li><li>Token usage for Codex and Gemini CLI, split by skill the same way as Claude Code. Cursor keeps its token counts on its own servers, so it shows skill counts only</li><li>Skills your tool loads on its own are listed without adding folders – Cursor also picks up your Claude Code skills</li><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
+            <sparkle:version>31</sparkle:version>
+            <sparkle:shortVersionString>1.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3934324" type="application/octet-stream" sparkle:edSignature="Vjg/I+RMSasRAM/xQUIDv2Lt/Q9afiqykvLZvVmo1I2+fxTH1bNX8embpTyflZFLGO457gUDkUqYkxqQ9MYkBg=="/>
+        </item>
+        <item>
+            <title>1.8</title>
             <pubDate>Wed, 30 Sep 2026 20:36:52 +0700</pubDate>
             <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.8</h2><p class="date">Release date: 30 Sep 2026</p><h3>New in 1.8</h3><ul><li>Codex, Cursor and Gemini CLI – pick your tool in Settings → AI Tools &amp; Folders</li><li>Token usage for Codex and Gemini CLI, split by skill the same way as Claude Code. Cursor keeps its token counts on its own servers, so it shows skill counts only</li><li>Skills your tool loads on its own are listed without adding folders – Cursor also picks up your Claude Code skills</li><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
             <sparkle:version>30</sparkle:version>
@@ -21,16 +31,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3880285" type="application/octet-stream" sparkle:edSignature="ueu7ChzfELgxg0wK/NJdGLYm8aA6wZp4JS0vOXe9CqPg1XR8n2+ZLAHhV2n9MA2l5Atv6DzH3pPQ/p2KoNT5Cw=="/>
-        </item>
-        <item>
-            <title>1.7.2</title>
-            <pubDate>Tue, 29 Sep 2026 12:13:33 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.7.2</h2><p class="date">Release date: 29 Sep 2026</p><h3>New in 1.7.2</h3><ul><li>UX improvements</li></ul></body></html>]]></description>
-            <sparkle:version>28</sparkle:version>
-            <sparkle:shortVersionString>1.7.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="3878729" type="application/octet-stream" sparkle:edSignature="yZSAEMyB+pK/AY3567UNO3P8CR48V/RrN57vKWZ6cP+h32xJAfwjpALlK13dwIMyKYOtK40BiTn1j4BuTn33Bw=="/>
         </item>
     </channel>
 </rss>
