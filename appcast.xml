@@ -2,11 +2,20 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
         <title>SkillKeeper</title>
-    
+        <item>
+            <title>2.0</title>
+            <pubDate>Mon, 05 Oct 2026 12:31:55 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.0</h2><p class="date">Release date: 5 Oct 2026</p><h3>New in 2.0</h3><ul><li>Works on Windows and Linux through the Claude Code mod – one license for the app and the mod.</li><li>The bell in the panel footer shows what needs you: a chat waiting for your reply, an agent spending tokens fast, a skill description that's too long.</li><li>Every row on the main screen opens a popover now: what it is, where it's stored, tokens per call and where it ran.</li><li>While Claude Code works, the app uses 5% CPU instead of 13%, with peaks of 30% instead of 90%.</li></ul></body></html>]]></description>
+            <sparkle:version>36</sparkle:version>
+            <sparkle:shortVersionString>2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4254887" type="application/octet-stream" sparkle:edSignature="ktUjuZGpmrhAMhVFgNtgbKVkOeaM0TQ4inYisLnEPsKCn/XH7x5ocCun+/Y8+7DTaXlyuwXEPq8zlWQNzqjECg=="/>
+        </item>
         <item>
             <title>1.9</title>
             <pubDate>Sun, 04 Oct 2026 12:00:00 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.9</h2><p class="date">Release date: 4 Oct 2026</p><h3>New in 1.9</h3><ul><li>The menu bar bolt turns yellow when a chat's context gets expensive – click it to see which chat</li><li>14-day free trial of everything. After it, the last 5 hours and 24 hours stay free for good; week and month history, editing, copying /commands and opening chats come with a one-time license</li><li>Check for Updates installs quietly, without a dialog</li><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>1.9</h2><p class="date">Release date: 4 Oct 2026</p><h3>New in 1.9</h3><ul><li>When a chat's context gets expensive, the menu bar bolt turns yellow.</li><li>Everything is free for 7 days. After that, 5h and 24h stay free.</li></ul></body></html>]]></description>
             <sparkle:phasedRolloutInterval>1</sparkle:phasedRolloutInterval>
             <sparkle:version>35</sparkle:version>
             <sparkle:shortVersionString>1.9</sparkle:shortVersionString>
