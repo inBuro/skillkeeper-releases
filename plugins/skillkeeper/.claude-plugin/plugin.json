@@ -1,0 +1,35 @@
+{
+  "name": "skillkeeper",
+  "version": "0.2.1",
+  "description": "Which skills fire, which never do, which Claude cannot see, and where your tokens go",
+  "author": {
+    "name": "SkillKeeper",
+    "url": "https://skillkeeper.app"
+  },
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "licenseKey": {
+      "type": "string",
+      "title": "SkillKeeper license key",
+      "description": "SKKP-… key from your SkillKeeper purchase",
+      "sensitive": true,
+      "default": ""
+    },
+    "extraSkillFolders": {
+      "type": "string",
+      "title": "Extra skill folders",
+      "description": "More folders to scan for skills, comma-separated (as the app's + Add folder)",
+      "default": ""
+    },
+    "usageAnalytics": {
+      "type": "string",
+      "title": "Anonymous usage counts",
+      "description": "Counts of panel opens and presses, never your skills – off to send nothing",
+      "options": [
+        "on",
+        "off"
+      ],
+      "default": "on"
+    }
+  }
+}
