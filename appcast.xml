@@ -3,8 +3,19 @@
     <channel>
         <title>SkillKeeper</title>
         <item>
+            <title>2.05</title>
+            <pubDate>Wed, 07 Oct 2026 13:35:08 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.05</h2><p class="date">Release date: 15 Sep 2026</p><h3>New in 2.05</h3><ul><li>Custom tab: add your own kinds of files with a path mask in Settings, with a license. Directives, personas, workflows, scripts, wiki pages – each type opens into its files, with tokens and launches for the period.</li><li>Click a file to see where it runs, which skills, commands and agents it was used with, and what was read next to it. Right-click copies the command that runs it.</li><li>Files you attach with @ count as reads now.</li><li>A card in the bell tells you when skills nobody used this month still cost tokens on every request: pause them all or open the list.</li><li>Pause is offered only where it works – Claude Code.</li><li>Long names scroll on hover.</li></ul></body></html>]]></description>
+            <sparkle:version>44</sparkle:version>
+            <sparkle:shortVersionString>2.05</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4659281" type="application/octet-stream" sparkle:edSignature="WrFXjlv/lZ3dumNj1nht9hpBtXhMoFfW/5bd8tkrBG38MBP8BJIMEB1JeYLeF5TDn+CP0wSG0ugXesXOE6yDAg=="/>
+        </item>
+        <item>
             <title>2.04</title>
             <pubDate>Wed, 07 Oct 2026 10:06:00 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.04</h2><p class="date">Release date: 7 Oct 2026</p><h3>New in 2.04</h3><ul><li>Rate SkillKeeper when your trial ends and get a month of free use.</li><li>Gift license keys can carry an end date.</li></ul></body></html>]]></description>
             <sparkle:version>43</sparkle:version>
             <sparkle:shortVersionString>2.04</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -14,22 +25,12 @@
         <item>
             <title>2.03</title>
             <pubDate>Mon, 05 Oct 2026 21:01:54 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.03</h2><p class="date">Release date: 15 Sep 2026</p><h3>New in 2.03</h3><ul><li>Indexing no longer gets stuck while a Cursor or Codex session is running. A long log is read on from where the last scan stopped – a 200 MB Codex log took 33 s on every change, now under a millisecond.</li><li>Cursor, Codex and Gemini show "Indexing N of M" during the first scan.</li><li>Settings → the bug icon, bottom left, copies diagnostics to paste into a support email.</li></ul></body></html>]]></description>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.03</h2><p class="date">Release date: 5 Oct 2026</p><h3>New in 2.03</h3><ul><li>Indexing no longer gets stuck while a Cursor or Codex session is running. A long log is read on from where the last scan stopped – a 200 MB Codex log took 33 s on every change, now under a millisecond.</li><li>Cursor, Codex and Gemini show "Indexing N of M" during the first scan.</li><li>Settings → the bug icon, bottom left, copies diagnostics to paste into a support email.</li></ul></body></html>]]></description>
             <sparkle:version>42</sparkle:version>
             <sparkle:shortVersionString>2.03</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4498410" type="application/octet-stream" sparkle:edSignature="ur0MY4xC+0M0jWTD4L0c5Gvu3Vlza5/3ygXypnUWSZaep2+VlaNnp7NpOeU2GHwzbqg4lPQ9kNkug1dyMhthBw=="/>
-        </item>
-        <item>
-            <title>2.02</title>
-            <pubDate>Mon, 05 Oct 2026 16:42:17 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.02</h2><p class="date">Release date: 5 Oct 2026</p><h3>New in 2.02</h3><ul><li>Bug fixes.</li></ul></body></html>]]></description>
-            <sparkle:version>39</sparkle:version>
-            <sparkle:shortVersionString>2.02</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4448645" type="application/octet-stream" sparkle:edSignature="yGDofXVXIfaCJInmMVV5zGn/P1sy7VeTA4j+tAAc+k83sMgjDMSZ2a/+68cWGq9ks9yPJ86biwkbGvNS6yTRDQ=="/>
         </item>
     </channel>
 </rss>
