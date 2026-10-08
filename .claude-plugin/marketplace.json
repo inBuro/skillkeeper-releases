@@ -9,7 +9,7 @@
       "name": "skillkeeper",
       "source": "./plugins/skillkeeper",
       "description": "Which skills fire, which never do, which Claude can't see – the SkillKeeper popup inside Claude Code",
-      "version": "0.2.2"
+      "version": "0.2.3"
     }
   ],
   "description": "SkillKeeper for Claude Code: skill usage, tokens and limits in a pane"
