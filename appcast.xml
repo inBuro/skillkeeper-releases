@@ -3,9 +3,19 @@
     <channel>
         <title>SkillKeeper</title>
         <item>
+            <title>2.08</title>
+            <pubDate>Sun, 11 Oct 2026 20:07:12 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.08</h2><p class="date">Release date: 11 Oct 2026</p><h3>New in 2.08</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
+            <sparkle:version>47</sparkle:version>
+            <sparkle:shortVersionString>2.08</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4793768" type="application/octet-stream" sparkle:edSignature="p7KPlfJW+rLcVHjo46cv0p9A23RQGmK3jgaHtRCaBMTwNeHis7HFCm3BasY2VXOQIxTrDdY7tqGh5uoxf9y2Cw=="/>
+        </item>
+        <item>
             <title>2.07</title>
             <pubDate>Thu, 08 Oct 2026 15:12:54 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.07</h2><p class="date">Release date: 15 Sep 2026</p><h3>New in 2.07</h3><ul><li>The free trial is now 3 days of use, 7 calendar days at most. Week and Month, editing and the other actions need a license after that.</li><li>Custom types is now called Custom Data Types, in Settings and in its window.</li></ul></body></html>]]></description>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.07</h2><p class="date">Release date: 8 Oct 2026</p><h3>New in 2.07</h3><ul><li>The free trial is now 3 days of use, 7 calendar days at most. Week and Month, editing and the other actions need a license after that.</li><li>Custom types is now called Custom Data Types, in Settings and in its window.</li></ul></body></html>]]></description>
             <sparkle:version>46</sparkle:version>
             <sparkle:shortVersionString>2.07</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -21,16 +31,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4706144" type="application/octet-stream" sparkle:edSignature="H9DGORi9fMBub8X7nbUhOkjzDm68dAKDH1bgP+6M0IaYqVSx5UfYoz95KdHtxvLXxwSSLR+SA7BEE2EVHoQWAQ=="/>
-        </item>
-        <item>
-            <title>2.05</title>
-            <pubDate>Wed, 07 Oct 2026 13:35:08 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.05</h2><p class="date">Release date: 7 Oct 2026</p><h3>New in 2.05</h3><ul><li>Custom tab: add your own kinds of files with a path mask in Settings, with a license. Directives, personas, workflows, scripts, wiki pages – each type opens into its files, with tokens and launches for the period.</li><li>Click a file to see where it runs, which skills, commands and agents it was used with, and what was read next to it. Right-click copies the command that runs it.</li><li>Files you attach with @ count as reads now.</li><li>A card in the bell tells you when skills nobody used this month still cost tokens on every request: pause them all or open the list.</li><li>Pause is offered only where it works – Claude Code.</li><li>Long names scroll on hover.</li></ul></body></html>]]></description>
-            <sparkle:version>44</sparkle:version>
-            <sparkle:shortVersionString>2.05</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4659281" type="application/octet-stream" sparkle:edSignature="WrFXjlv/lZ3dumNj1nht9hpBtXhMoFfW/5bd8tkrBG38MBP8BJIMEB1JeYLeF5TDn+CP0wSG0ugXesXOE6yDAg=="/>
         </item>
     </channel>
 </rss>
