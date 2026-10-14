@@ -5,17 +5,16 @@
         <item>
             <title>2.09</title>
             <pubDate>Wed, 14 Oct 2026 12:34:13 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.09</h2><p class="date">Release date: 14 Oct 2026</p><h3>New in 2.09</h3><ul><li>The free trial now runs for 3 days from install, whether or not you opened the panel. Week and Month, editing and the other actions need a license after that</li></ul></body></html>]]></description>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.09</h2><p class="date">Release date: 14 Oct 2026</p><h3>New in 2.09</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
             <sparkle:version>48</sparkle:version>
             <sparkle:shortVersionString>2.09</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4791028" type="application/octet-stream" sparkle:edSignature="Bg7ObcrmmqKCRgE4VRTb9MfswQ+QfgsAg1H+eUxXvSbVYZOMMd2jMYlKt6rIyjAlBX66JDABqlyCyvoxC3vzCw=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4790925" type="application/octet-stream" sparkle:edSignature="Xo95Kk1EwInoAPTBG57NzUTo3/UW/S9Eircx3SG2VNnojTTlDY5RVY9aooAvqiu7RVGupqVh3g7SSih5bo0mBA=="/>
         </item>
         <item>
             <title>2.08</title>
             <pubDate>Sun, 11 Oct 2026 20:07:12 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.08</h2><p class="date">Release date: 11 Oct 2026</p><h3>New in 2.08</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
             <sparkle:version>47</sparkle:version>
             <sparkle:shortVersionString>2.08</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
