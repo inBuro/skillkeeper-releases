@@ -358,10 +358,10 @@ const isSkipped = (name: string) => name.startsWith('.') || name.startsWith('_')
 let extraFolders: string[] = []
 
 async function scanLibrary($: Engine, cwd: string): Promise<Skill[]> {
-  const h = await home($)
+  const homeDir = await home($)
   const added = await read($, folders)
-  const extra = [...extraFolders, ...added].map(f => (f.startsWith('~/') ? `${h}${f.slice(1)}` : f))
-  const roots = [...new Set([`${h}/.claude/skills`, `${cwd}/.claude/skills`, ...extra])]
+  const extra = [...extraFolders, ...added].map(f => (f.startsWith('~/') ? `${homeDir}${f.slice(1)}` : f))
+  const roots = [...new Set([`${homeDir}/.claude/skills`, `${cwd}/.claude/skills`, ...extra])]
   const out: Skill[] = []
   const names = new Set<string>()
 
