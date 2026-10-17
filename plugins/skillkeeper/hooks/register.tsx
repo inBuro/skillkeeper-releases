@@ -1518,7 +1518,10 @@ async function drawPanel(
   const noticeCount = isLocked ? 0 : (await currentNotices($)).length
 
   // The notifications screen: the app's bell layer, as a screen of the pane.
-  if ((await read($, screen)) === 'notifications') return renderNotices($, ui, geom)
+  if ((await read($, screen)) === 'notifications') {
+    const notices = await renderNotices($, ui, geom)
+    return notices
+  }
 
   // The settings screen, as the app's Settings window: version, privacy, license,
   // skill folders, links; ‹ Back or Esc returns to the list.
