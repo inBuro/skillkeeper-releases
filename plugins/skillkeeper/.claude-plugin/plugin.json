@@ -1,11 +1,12 @@
 {
   "name": "skillkeeper",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Which skills fire, which never do, which Claude cannot see, and where your tokens go",
   "author": {
     "name": "SkillKeeper",
     "url": "https://skillkeeper.app"
   },
+  "license": "UNLICENSED",
   "types": "./types/index.d.ts",
   "userConfig": {
     "licenseKey": {
