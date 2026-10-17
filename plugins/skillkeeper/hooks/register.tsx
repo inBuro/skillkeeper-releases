@@ -198,13 +198,13 @@ const license = atom({ plugin: 'skillkeeper', key: 'license' } as const, {
 } as License)
 const trial = atom({ plugin: 'skillkeeper', key: 'trial' } as const, { isLoaded: false, isActive: true, days: 0 } as TrialView)
 
-type $ = EngineInterface
+type Engine = EngineInterface
 
-async function home($: $): Promise<string> {
+async function home($: Engine): Promise<string> {
   return (await $.env.get('HOME')) ?? (await $.env.get('USERPROFILE')) ?? ''
 }
 
-async function readSkill($: $, dir: string, folder: string, router?: string): Promise<Skill | undefined> {
+async function readSkill($: Engine, dir: string, folder: string, router?: string): Promise<Skill | undefined> {
   const path = `${dir}/SKILL.md`
   const text = await $.fs.read(path).catch(() => undefined)
   if (typeof text !== 'string') return undefined
@@ -241,7 +241,7 @@ let surfaceName = 'terminal'
  * `ui_action` with `element`, as its `Analytics.ui`. Never awaited by a press,
  * never a skill's name.
  */
-async function track($: $, event: string, props: EventProps = {}, ui = true): Promise<void> {
+async function track($: Engine, event: string, props: EventProps = {}, ui = true): Promise<void> {
   if (!analyticsOn || isHeadless) return
   try {
     let distinctId = (await $.store.get('analyticsId')) as string | undefined
@@ -264,7 +264,7 @@ async function track($: $, event: string, props: EventProps = {}, ui = true): Pr
  * One write to a skill's own description, as the app's SkillFileEditor: gated by the license
  * after the trial, then the library read again. `action` is the app's label for `skill_edited`.
  */
-async function editSkill($: $, path: string, action: string, edit: (file: string) => EditResult): Promise<boolean> {
+async function editSkill($: Engine, path: string, action: string, edit: (file: string) => EditResult): Promise<boolean> {
   if (!(await isUnlocked($))) {
     void track($, 'paid_action_blocked', { action, app: 'claude_code' }, false)
     $.ui.toast('skillkeeper · editing a skill needs a license')
@@ -291,13 +291,13 @@ async function editSkill($: $, path: string, action: string, edit: (file: string
   return true
 }
 
-async function addTrigger($: $, path: string, phrases: string): Promise<void> {
+async function addTrigger($: Engine, path: string, phrases: string): Promise<void> {
   if (phrases.trim() === '') return
   await editSkill($, path, 'append_trigger', file => appendTriggers(file, phrases))
 }
 
 /** An added command also gets its command file, as the app registers it: never over one that exists. */
-async function addCommand($: $, path: string, skill: string, command: string): Promise<void> {
+async function addCommand($: Engine, path: string, skill: string, command: string): Promise<void> {
   if (command.trim() === '') return
   if (!(await editSkill($, path, 'append_command', file => appendCommand(file, command)))) return
   const made = commandFile(command, skill)
@@ -307,7 +307,7 @@ async function addCommand($: $, path: string, skill: string, command: string): P
 }
 
 /** Opens or closes a row's card; the row stays selected only while its card is open. */
-async function toggleCard($: $, key: string): Promise<void> {
+async function toggleCard($: Engine, key: string): Promise<void> {
   const open = await read($, card)
   if (open !== key) {
     // The app's event for each card it opens: the feature only, never the row's name.
@@ -321,7 +321,7 @@ async function toggleCard($: $, key: string): Promise<void> {
   await update($, selected, () => (open === key ? null : key))
 }
 
-async function toggleFavorite($: $, name: string): Promise<void> {
+async function toggleFavorite($: Engine, name: string): Promise<void> {
   // The app's free action: favorite / unfavorite, `_agent` for an agent; the feature only.
   const isAgent = name.startsWith('agent:')
   const wasOn = (await read($, favorites)).includes(name)
@@ -336,14 +336,14 @@ function invocation(skill: Skill): string {
 }
 
 /** Opens a file in its app: `open` on the Mac, `xdg-open` elsewhere. */
-async function openFile($: $, path: string): Promise<void> {
+async function openFile($: Engine, path: string): Promise<void> {
   const mac = await $.process.run(['open', path]).catch(() => undefined)
   if (mac?.exitCode === 0) return
   const other = await $.process.run(['xdg-open', path]).catch(() => undefined)
   if (other?.exitCode !== 0) $.ui.toast('skillkeeper · could not open the file')
 }
 
-async function setSearch($: $, next: { isOpen: boolean; query: string }): Promise<void> {
+async function setSearch($: Engine, next: { isOpen: boolean; query: string }): Promise<void> {
   const wasOpen = (await read($, search)).isOpen
   if (next.isOpen && !wasOpen) void track($, 'search_reveal')
   await update($, search, () => next)
@@ -357,7 +357,7 @@ const isSkipped = (name: string) => name.startsWith('.') || name.startsWith('_')
 /** Folders the person added in /config, as the app's + Add folder. */
 let extraFolders: string[] = []
 
-async function scanLibrary($: $, cwd: string): Promise<Skill[]> {
+async function scanLibrary($: Engine, cwd: string): Promise<Skill[]> {
   const h = await home($)
   const added = await read($, folders)
   const extra = [...extraFolders, ...added].map(f => (f.startsWith('~/') ? `${h}${f.slice(1)}` : f))
@@ -387,7 +387,7 @@ async function scanLibrary($: $, cwd: string): Promise<Skill[]> {
 }
 
 /** Agent definitions, as the app lists them: ~/.claude/agents and the project's .claude/agents. */
-async function scanAgents($: $, cwd: string): Promise<AgentDef[]> {
+async function scanAgents($: Engine, cwd: string): Promise<AgentDef[]> {
   const out: AgentDef[] = []
   for (const dir of [...new Set([`${await home($)}/.claude/agents`, `${cwd}/.claude/agents`])]) {
     for (const entry of await $.fs.list(dir).catch(() => [])) {
@@ -408,7 +408,7 @@ async function scanAgents($: $, cwd: string): Promise<AgentDef[]> {
   return out
 }
 
-async function rescan($: $, cwd: string): Promise<void> {
+async function rescan($: Engine, cwd: string): Promise<void> {
   const skills = await scanLibrary($, cwd)
   await update($, library, () => skills)
   const agents = await scanAgents($, cwd)
@@ -432,7 +432,7 @@ async function rescan($: $, cwd: string): Promise<void> {
 }
 
 /** Skills paused in Claude Code's settings: `skillOverrides[name] === "off"`, as the app's SkillOverridesEditor reads them. */
-async function scanPaused($: $): Promise<string[]> {
+async function scanPaused($: Engine): Promise<string[]> {
   const settings = (await $.settings.read().catch(() => ({}))) as { skillOverrides?: unknown }
   const overrides = settings.skillOverrides
   if (!overrides || typeof overrides !== 'object' || Array.isArray(overrides)) return []
@@ -443,7 +443,7 @@ async function scanPaused($: $): Promise<string[]> {
  * Skills a SessionStart hook loads, as the app finds them: a hook command that is
  * an interpreter and one absolute script, whose text names `skills/<name>/SKILL.md`.
  */
-async function scanOnStart($: $): Promise<string[]> {
+async function scanOnStart($: Engine): Promise<string[]> {
   const settings = (await $.settings.read().catch(() => ({}))) as { hooks?: { SessionStart?: Array<{ hooks?: Array<{ command?: unknown }> }> } }
   const names = new Set<string>()
   for (const group of settings.hooks?.SessionStart ?? []) {
@@ -459,7 +459,7 @@ async function scanOnStart($: $): Promise<string[]> {
 }
 
 /** `totalSkills − includedSkills` from the context breakdown, with the names left out; and the rate limits. */
-async function refreshHidden($: $): Promise<void> {
+async function refreshHidden($: Engine): Promise<void> {
   const usage = await $.session.usage({ breakdown: 'summary' }).catch(() => undefined)
   if (usage) {
     // `claude -p /usage` is the fresher source, as the app reads it: the session's own
@@ -481,7 +481,7 @@ async function refreshHidden($: $): Promise<void> {
 }
 
 /** A reading of the current limits for the forecast (`notify.ts`). */
-async function recordSamples($: $): Promise<void> {
+async function recordSamples($: Engine): Promise<void> {
   const now = await $.clock.now()
   const current = await read($, limits)
   await update($, limitSamples, cur => addSamples(cur, current, now))
@@ -493,7 +493,7 @@ const shownNotices = new Set<string>()
 const shownBands = new Set<string>()
 
 /** Every notification now: this session's compact, limit forecasts, skill and model problems. */
-async function currentNotices($: $): Promise<Notice[]> {
+async function currentNotices($: Engine): Promise<Notice[]> {
   const all = allNotices(
     [
       sessionNotices(await read($, context)),
@@ -518,7 +518,7 @@ async function currentNotices($: $): Promise<Notice[]> {
 const SURVEY = { id: '01a0ccb2-a6c2-0000-aa04-558ddcee71c4', rating: '177eaf97-e3ca-4d99-bfe3-1fb3dae15df0', improve: '4e130685-2a26-4678-96b7-bc560ddb21d7' }
 
 /** A thumb, and what's wrong after a thumbs down: the app's `survey sent`, same survey, same questions. */
-async function sendReview($: $, useful: boolean, improve = ''): Promise<void> {
+async function sendReview($: Engine, useful: boolean, improve = ''): Promise<void> {
   const props: EventProps = { $survey_id: SURVEY.id, usage_source: (await read($, view)).source }
   props[`$survey_response_${SURVEY.rating}`] = useful ? 'Useful' : 'Not useful'
   props.$survey_response = useful ? 'Useful' : 'Not useful'
@@ -531,14 +531,14 @@ async function sendReview($: $, useful: boolean, improve = ''): Promise<void> {
 }
 
 /** Settings' checkbox and the card's "Stop showing …": a kind on or off, kept across sessions. */
-async function turnNotices($: $, kind: string, on: boolean): Promise<void> {
+async function turnNotices($: Engine, kind: string, on: boolean): Promise<void> {
   void track($, on ? 'notification_kind_on' : 'notification_kind_off', { kind })
   await update($, noticesOff, cur => (on ? cur.filter(k => k !== kind) : [...new Set([...cur, kind])]))
   await $.store.set('noticesOff', await read($, noticesOff))
 }
 
 /** "Mute until tomorrow": that agent's records until the start of tomorrow. */
-async function muteNotice($: $, n: Notice): Promise<void> {
+async function muteNotice($: Engine, n: Notice): Promise<void> {
   if (n.muteKey === undefined) return
   void track($, 'notification_action', { kind: n.kind, action: 'mute_today', via: 'card' })
   const until = tomorrow(await $.clock.now())
@@ -547,7 +547,7 @@ async function muteNotice($: $, n: Notice): Promise<void> {
 }
 
 /** "Show agent": the Agents tab with that agent's card open. */
-async function showAgent($: $, name: string): Promise<void> {
+async function showAgent($: Engine, name: string): Promise<void> {
   void track($, 'notification_action', { kind: 'agentSpike', action: 'show_agent', via: 'card' })
   await changeView($, cur => ({ ...cur, source: 'agents', dropdown: 'agents', isMenuOpen: false }))
   await update($, screen, () => 'list' as const)
@@ -556,7 +556,7 @@ async function showAgent($: $, name: string): Promise<void> {
 }
 
 /** Runs /compact in this very session – the mod lives in it, so no clipboard and no switching. */
-async function compactNow($: $, via: 'card' | 'band'): Promise<void> {
+async function compactNow($: Engine, via: 'card' | 'band'): Promise<void> {
   void track($, 'notification_action', { kind: 'compact', action: 'compact', via })
   await $.command.run({ command: 'compact' }).catch(() => $.ui.toast('skillkeeper · type /compact – it could not run from here'))
 }
@@ -564,7 +564,7 @@ async function compactNow($: $, via: 'card' | 'band'): Promise<void> {
 /** Each loop's last `Skill` call, as the app's `lastRouterSkill`: the main loop under ''. */
 const lastSkill = new Map<string, string>()
 
-async function recordCall($: $, name: string): Promise<void> {
+async function recordCall($: Engine, name: string): Promise<void> {
   const now = await $.clock.now()
   const before = await read($, history)
   const previous = lastAt(before, name)
@@ -581,7 +581,7 @@ async function recordCall($: $, name: string): Promise<void> {
 let builtins: ReadonlySet<string> = BUILTIN_COMMANDS
 
 /** Everything the store keeps, into the session's state: at start, and again after a /clear. */
-async function load($: $): Promise<void> {
+async function load($: Engine): Promise<void> {
   const now = await $.clock.now()
   const stored = (await $.store.get('history')) as History | undefined
   await update($, history, () => pruneHistory(stored ?? {}, now))
@@ -640,7 +640,7 @@ async function load($: $): Promise<void> {
 let turn: { skills: string[]; command?: string; tools: Array<{ kind: Kind; name: string }> } = { skills: [], tools: [] }
 
 /** A call of an agent, tool, MCP server or command: counted, never toasted. */
-async function recordActivity($: $, kind: DropdownKind, name: string): Promise<void> {
+async function recordActivity($: Engine, kind: DropdownKind, name: string): Promise<void> {
   const now = await $.clock.now()
   const next = { ...(await read($, activity)) }
   next[kind] = addCalls(next[kind], [{ name, at: now }], now, ACTIVITY_CAP)
@@ -666,7 +666,7 @@ function mergeWindow(stored: History, found: readonly { name: string; at: number
  * byte where they end. A line longer than a chunk is stepped over: a tool
  * result that size holds nothing the index reads.
  */
-async function readLines($: $, path: string, offset: number, size: number): Promise<{ text: string; next: number } | undefined> {
+async function readLines($: Engine, path: string, offset: number, size: number): Promise<{ text: string; next: number } | undefined> {
   const length = Math.min(READ_CHUNK, size - offset)
   if (length <= 0) return { text: '', next: offset }
   const run = (script: string) =>
@@ -713,13 +713,13 @@ const soFar = new Map<string, FileSoFar>()
 const emptySoFar = (): FileSoFar => ({ size: 0, offset: 0, carry: NEW_CARRY, calls: [], charges: new Map(), totals: new Map(), models: new Map(), modelsAt: new Map(), agentSkills: new Map() })
 
 /** Where a transcript's index is kept between sessions: one small file each, as the app's scan cache. */
-async function indexPath($: $, path: string): Promise<string> {
+async function indexPath($: Engine, path: string): Promise<string> {
   const root = `${await home($)}/.claude/projects/`
   const name = (path.startsWith(root) ? path.slice(root.length) : path).replace(/[\\/:]/g, '__')
   return `${await home($)}/.claude/plugins/data/skillkeeper-skillkeeper/index/${name}.json`
 }
 
-async function loadSoFar($: $, path: string): Promise<FileSoFar | undefined> {
+async function loadSoFar($: Engine, path: string): Promise<FileSoFar | undefined> {
   const text = await $.fs.read(await indexPath($, path)).catch(() => undefined)
   if (typeof text !== 'string') return undefined
   try {
@@ -754,7 +754,7 @@ async function loadSoFar($: $, path: string): Promise<FileSoFar | undefined> {
   }
 }
 
-async function saveSoFar($: $, path: string, file: FileSoFar, since: number): Promise<void> {
+async function saveSoFar($: Engine, path: string, file: FileSoFar, since: number): Promise<void> {
   const text = JSON.stringify({
     v: INDEX_VERSION,
     size: file.size,
@@ -772,7 +772,7 @@ async function saveSoFar($: $, path: string, file: FileSoFar, since: number): Pr
   await $.fs.write(await indexPath($, path), text).catch(() => undefined)
 }
 
-async function readSoFar($: $, path: string, size: number, ctx: Omit<Parameters<typeof parseFile>[1], 'session'>): Promise<FileSoFar> {
+async function readSoFar($: Engine, path: string, size: number, ctx: Omit<Parameters<typeof parseFile>[1], 'session'>): Promise<FileSoFar> {
   let file = soFar.get(path) ?? (await loadSoFar($, path))
   if (!file || size < file.size) file = emptySoFar()
   const before = file.offset
@@ -817,7 +817,7 @@ let isLiveScanning = false
  * The live sessions, as the app's context block finds them: transcripts written in the
  * last hour (a warm cache), each read from its tail for the last main-chain call.
  */
-async function scanLive($: $): Promise<void> {
+async function scanLive($: Engine): Promise<void> {
   if (isLiveScanning) return
   isLiveScanning = true
   try {
@@ -856,7 +856,7 @@ async function scanLive($: $): Promise<void> {
  * extension's link (`<scheme>://anthropic.claude-code/open?session=<id>`), the scheme the
  * running editor's own. A terminal session has no such link.
  */
-async function openSession($: $, session: LiveSession, via = 'live'): Promise<void> {
+async function openSession($: Engine, session: LiveSession, via = 'live'): Promise<void> {
   if (session.entrypoint && session.entrypoint !== 'claude-vscode') {
     void track($, 'session_open', { route: 'none', host: 'terminal', via })
     $.ui.toast('skillkeeper · a terminal session can\'t be opened from here')
@@ -887,7 +887,7 @@ let lastPolled = 0
  * The limits as `claude -p /usage` reports them, as the app polls them while its panel
  * is open: the session's own figures age until its next model call.
  */
-async function pollUsage($: $): Promise<void> {
+async function pollUsage($: Engine): Promise<void> {
   if (isPolling || isHeadless) return
   isPolling = true
   try {
@@ -921,7 +921,7 @@ async function pollUsage($: $): Promise<void> {
  * opens on an index older than 10 minutes; what it reads replaces that window, what
  * was counted live since it began stays.
  */
-async function indexHistory($: $): Promise<void> {
+async function indexHistory($: Engine): Promise<void> {
   if (isIndexing || isHeadless) return
   isIndexing = true
   try {
@@ -1104,7 +1104,7 @@ let version = ''
 let typedKey = ''
 
 /** Where both clients keep the trial: one per machine (docs/shared_trial_spec.md). */
-async function trialPath($: $): Promise<string> {
+async function trialPath($: Engine): Promise<string> {
   return `${await home($)}/.claude/skillkeeper/trial.json`
 }
 
@@ -1112,7 +1112,7 @@ async function trialPath($: $): Promise<string> {
 let isMac = true
 
 /** The store's copy and the file's, merged; a broken or missing file is just absent. */
-async function readTrial($: $): Promise<{ file?: TrialState; own?: TrialState; merged?: TrialState }> {
+async function readTrial($: Engine): Promise<{ file?: TrialState; own?: TrialState; merged?: TrialState }> {
   const file = parseTrial(await $.fs.read(await trialPath($)).catch(() => undefined))
   const own = parseTrial(JSON.stringify((await $.store.get('trial')) ?? null))
   const merged = mergeTrials(file, own)
@@ -1120,7 +1120,7 @@ async function readTrial($: $): Promise<{ file?: TrialState; own?: TrialState; m
 }
 
 /** Kept in the store and in the file: a temp file renamed over, so the app never reads half of it. */
-async function writeTrial($: $, state: TrialState): Promise<void> {
+async function writeTrial($: Engine, state: TrialState): Promise<void> {
   await $.store.set('trial', state)
   const path = await trialPath($)
   const tmp = `${path}.${await $.clock.now()}.tmp`
@@ -1131,11 +1131,11 @@ async function writeTrial($: $, state: TrialState): Promise<void> {
   if (moveWin?.exitCode !== 0) await $.fs.write(path, trialFile(state)).catch(() => undefined)
 }
 
-async function trialProps($: $, state: TrialState): Promise<EventProps> {
+async function trialProps($: Engine, state: TrialState): Promise<EventProps> {
   return { client: 'mod', trial_source: ((await $.store.get('trialSource')) as string | undefined) ?? 'own', day: dayNumber(state, await $.clock.now()) }
 }
 
-async function showTrial($: $, state: TrialState): Promise<void> {
+async function showTrial($: Engine, state: TrialState): Promise<void> {
   const now = await $.clock.now()
   const isActive = isTrialActive(state, now)
   await update($, trial, () => ({ isLoaded: true, isActive, days: dayNumber(state, now) }))
@@ -1146,7 +1146,7 @@ async function showTrial($: $, state: TrialState): Promise<void> {
 }
 
 /** Launch: the file and the store merged and written back; neither there starts a trial now. */
-async function loadTrial($: $): Promise<void> {
+async function loadTrial($: Engine): Promise<void> {
   isMac = (await home($)).startsWith('/Users/')
   const nowSec = Math.floor((await $.clock.now()) / 1000)
   const { file, own, merged } = await readTrial($)
@@ -1158,7 +1158,7 @@ async function loadTrial($: $): Promise<void> {
 }
 
 /** The panel opens: read again (the app may have counted today), count today once, write. */
-async function countTrialDay($: $): Promise<void> {
+async function countTrialDay($: Engine): Promise<void> {
   const now = await $.clock.now()
   const nowSec = Math.floor(now / 1000)
   const { merged } = await readTrial($)
@@ -1170,23 +1170,23 @@ async function countTrialDay($: $): Promise<void> {
 }
 
 /** Week, Month and skill edits: a good key, or the trial still running. */
-async function isUnlocked($: $): Promise<boolean> {
+async function isUnlocked($: Engine): Promise<boolean> {
   return !PAYWALL || (await read($, license)).isPro || (await read($, trial)).isActive
 }
 
 /** Notifications are paid too: open in the trial and with a key, as the app's (owner, 2026-10-04, B). */
-async function isNoticesLocked($: $): Promise<boolean> {
+async function isNoticesLocked($: Engine): Promise<boolean> {
   return PAYWALL && (await read($, trial)).isLoaded && !(await isUnlocked($))
 }
 
 /** The buy page, tagged so a sale ties back to this install; the app's event for the click. */
-async function openBuy($: $, source: string): Promise<void> {
+async function openBuy($: Engine, source: string): Promise<void> {
   const id = isOwnerHome(await home($)) ? OWNER_ID : ((await $.store.get('analyticsId')) as string | undefined)
   void track($, 'license_offer_click', { source }, false)
   await openFile($, buyUrl(id))
 }
 
-async function checkLicense($: $, key: string): Promise<void> {
+async function checkLicense($: Engine, key: string): Promise<void> {
   if (!PAYWALL) return
   if (!isKeyShaped(key)) {
     if (key.trim() !== '') await update($, licenseNote, () => 'That key doesn’t look right – check for typos')
@@ -1233,7 +1233,7 @@ async function checkLicense($: $, key: string): Promise<void> {
  * field is sensitive: the keychain), so the next session has it. The store holds only
  * its hash, and this session's `typedKey` dies with the session or a reload.
  */
-async function submitKey($: $, value: string): Promise<void> {
+async function submitKey($: Engine, value: string): Promise<void> {
   void track($, 'license_activate_tap')
   typedKey = value.replace(/\s+/g, '')
   await checkLicense($, typedKey)
@@ -1242,7 +1242,7 @@ async function submitKey($: $, value: string): Promise<void> {
   if (kept.deny !== undefined) await update($, licenseNote, () => 'Couldn’t keep the key – add it in /config')
 }
 
-async function saveFolders($: $, change: (list: string[]) => string[]): Promise<void> {
+async function saveFolders($: Engine, change: (list: string[]) => string[]): Promise<void> {
   // The app's setup events: a folder added or removed.
   const before = await read($, folders)
   const after = change(before)
@@ -1256,7 +1256,7 @@ async function saveFolders($: $, change: (list: string[]) => string[]): Promise<
 /** The cwd rescans run from: the session's, set at start. */
 let settingsCwd = '.'
 
-async function setPeriod($: $, period: Period): Promise<void> {
+async function setPeriod($: Engine, period: Period): Promise<void> {
   await update($, scroll, () => 0)
   if (!isPeriodOpen(period, await isUnlocked($))) {
     void track($, 'timeframe_locked', { value: period })
@@ -1271,7 +1271,7 @@ async function setPeriod($: $, period: Period): Promise<void> {
 }
 
 /** Opens or closes a router: ABC keeps the person's collapsed set, the other sorts their session openings. */
-async function toggleGroup($: $, name: string): Promise<void> {
+async function toggleGroup($: Engine, name: string): Promise<void> {
   const flip = (list: string[]) => (list.includes(name) ? list.filter(n => n !== name) : [...list, name])
   const cur = await read($, view)
   const isCollapsing = cur.sort === 'abc' ? !cur.collapsed.includes(name) : cur.expanded.includes(name)
@@ -1279,7 +1279,7 @@ async function toggleGroup($: $, name: string): Promise<void> {
   await changeView($, cur => (cur.sort === 'abc' ? { ...cur, collapsed: flip(cur.collapsed) } : { ...cur, expanded: flip(cur.expanded) }))
 }
 
-async function changeView($: $, change: (v: View) => View): Promise<void> {
+async function changeView($: Engine, change: (v: View) => View): Promise<void> {
   const before = await read($, view)
   await update($, view, change)
   const after = await read($, view)
@@ -1299,7 +1299,7 @@ async function changeView($: $, change: (v: View) => View): Promise<void> {
  * The panel as text, for a chat that draws no mod UI (the editor extensions):
  * the All tab in the person's period and sort, the limit, Total tokens.
  */
-async function chatReport($: $): Promise<string> {
+async function chatReport($: Engine): Promise<string> {
   const now = await $.clock.now()
   const v = await read($, view)
   const calls = await read($, history)
@@ -1333,8 +1333,8 @@ async function chatReport($: $): Promise<string> {
 }
 
 async function drawPanel(
-  $: $,
-  e: Parameters<$['ui']['resolve']>[0],
+  $: Engine,
+  e: Parameters<Engine['ui']['resolve']>[0],
   geom: { columns: number; rows: number; inline: boolean },
 ): Promise<RenderElement> {
   const ui = $.ui.resolve(e)
@@ -2301,7 +2301,7 @@ async function drawPanel(
 }
 
 /** A 10-cell bar in the notice's colour, with a tick where the suggestion starts. */
-function noticeBar(Text: ReturnType<$['ui']['resolve']>['Text'], n: Notice): RenderElement[] {
+function noticeBar(Text: ReturnType<Engine['ui']['resolve']>['Text'], n: Notice): RenderElement[] {
   const width = 10
   const full = Math.round(Math.min(1, Math.max(0, n.bar ?? 0)) * width)
   const markAt = n.mark === undefined ? -1 : Math.min(width - 1, Math.round(n.mark * width))
@@ -2318,8 +2318,8 @@ const GROUP_TITLE = { now: '', today: 'TODAY', anytime: 'ANYTIME' } as const
 
 /** The notifications screen: cards by urgency – Now (no header), Today, Anytime. */
 async function renderNotices(
-  $: $,
-  ui: ReturnType<$['ui']['resolve']>,
+  $: Engine,
+  ui: ReturnType<Engine['ui']['resolve']>,
   geom: { columns: number; rows: number; inline: boolean },
 ): Promise<RenderElement> {
   const { Box, Text, Button } = ui
