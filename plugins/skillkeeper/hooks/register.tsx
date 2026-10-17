@@ -531,9 +531,9 @@ async function sendReview($: Engine, useful: boolean, improve = ''): Promise<voi
 }
 
 /** Settings' checkbox and the card's "Stop showing …": a kind on or off, kept across sessions. */
-async function turnNotices($: Engine, kind: string, on: boolean): Promise<void> {
-  void track($, on ? 'notification_kind_on' : 'notification_kind_off', { kind })
-  await update($, noticesOff, cur => (on ? cur.filter(k => k !== kind) : [...new Set([...cur, kind])]))
+async function turnNotices($: Engine, kind: string, enabled: boolean): Promise<void> {
+  void track($, enabled ? 'notification_kind_on' : 'notification_kind_off', { kind })
+  await update($, noticesOff, cur => (enabled ? cur.filter(k => k !== kind) : [...new Set([...cur, kind])]))
   await $.store.set('noticesOff', await read($, noticesOff))
 }
 
