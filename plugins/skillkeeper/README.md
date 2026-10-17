@@ -42,6 +42,7 @@ The counts go to PostHog (`https://us.i.posthog.com/i/v0/e/`), with a random ins
 - Skill, command, agent and memory files in `~/.claude` and in the current project, plus any extra folders you add in Settings.
 - While you work, it sees each tool call and each prompt in the current session, only to note which skill ran and when. It does not keep or send their text.
 - Your limits, by asking Claude Code itself (see `claude -p /usage` below).
+- The `HOME` and `USERPROFILE` environment variables, only to find your `~/.claude` folder. It reads no other variable and sets none.
 
 ### What its hooks do
 
