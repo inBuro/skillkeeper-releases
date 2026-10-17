@@ -256,7 +256,7 @@ async function track($: Engine, event: string, props: EventProps = {}, ui = true
       surface: surfaceName,
       at: await $.clock.now(),
     })
-    await $.http.fetch(POSTHOG_CAPTURE, { method: 'POST', headers: { 'content-type': 'application/json' }, body })
+    await $.http.fetch('https://us.i.posthog.com/i/v0/e/', { method: 'POST', headers: { 'content-type': 'application/json' }, body })
   } catch {}
 }
 
@@ -1204,13 +1204,11 @@ async function checkLicense($: Engine, key: string): Promise<void> {
       deviceId = newDeviceId()
       await $.store.set('deviceId', deviceId)
     }
-    const answer = await $.http
-      .fetch(ACTIVATE_URL, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ license: key.trim(), device_id: deviceId, supports_expiry: true }),
-      })
-      .catch(() => undefined)
+    const answer = await $.http.fetch('https://fadercraft.com/api/skillkeeper-activate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ license: key.trim(), device_id: deviceId, supports_expiry: true }),
+    }).catch(() => undefined)
     // Offline: a key accepted before keeps working.
     if (answer) {
       verdict = { hash, isPro: isActivated(answer.status, answer.text), checkedAt: now, expiresAt: parseExpiry(answer.text) }
