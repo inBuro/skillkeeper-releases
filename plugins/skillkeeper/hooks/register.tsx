@@ -1332,6 +1332,148 @@ async function chatReport($: Engine): Promise<string> {
   return lines.join('\n')
 }
 
+/** A 10-cell bar in the notice's colour, with a tick where the suggestion starts. */
+function noticeBar(Text: ReturnType<Engine['ui']['resolve']>['Text'], n: Notice): RenderElement[] {
+  const width = 10
+  const full = Math.round(Math.min(1, Math.max(0, n.bar ?? 0)) * width)
+  const markAt = n.mark === undefined ? -1 : Math.min(width - 1, Math.round(n.mark * width))
+  return Array.from({ length: width }, (_, i) =>
+    i === markAt ? (
+      <Text key={`m${i}`}>┃</Text>
+    ) : (
+      <Text key={`c${i}`} color={i < full ? n.color : COLOR.track}>━</Text>
+    ),
+  )
+}
+
+const GROUP_TITLE = { now: '', today: 'TODAY', anytime: 'ANYTIME' } as const
+
+/** The notifications screen: cards by urgency – Now (no header), Today, Anytime. */
+async function renderNotices(
+  $: Engine,
+  ui: ReturnType<Engine['ui']['resolve']>,
+  geom: { columns: number; rows: number; inline: boolean },
+): Promise<RenderElement> {
+  const { Box, Text, Button } = ui
+  const isLocked = await isNoticesLocked($)
+  const list = isLocked ? [] : await currentNotices($)
+  const width = Math.max(16, geom.columns - 2 * PAD_X - 2)
+  const back = () => {
+    void track($, 'notifications_flip', { to: 'front', count: list.length })
+    void update($, screen, () => 'list' as const)
+  }
+  const hide = (ids: string[]) => void update($, dismissed, cur => [...cur, ...ids])
+  const dismissOne = (n: Notice) => {
+    void track($, 'notification_dismiss', { kind: n.kind, via: 'card' })
+    hide([n.id])
+  }
+  const groups = (['now', 'today', 'anytime'] as const).map(g => ({ g, items: list.filter(n => n.group === g) })).filter(x => x.items.length > 0)
+  const scanned = await read($, scannedAt)
+  const now = await $.clock.now()
+  // The main screen's rows (owner, 2026-10-04: same spacing as the first screen):
+  // a blank row, the close mark's row, the header, the cards, the footer pinned below.
+  return (
+    // The main screen's height, so the header and the footer sit on the same rows (owner,
+    // 2026-10-04: content jumped between the screens).
+    // The main screen is `rows` + 2 tall: its list gets `rows − chrome`, and the blank
+    // rows above and below aren't in `chrome` – so the footer lands on the same row.
+    <Box flexDirection="column" height={geom.rows + 2}>
+      <Text> </Text>
+      <Box flexDirection="column" paddingX={PAD_X} flexGrow={1}>
+        <Text> </Text>
+        <Box justifyContent="space-between" columnGap={1}>
+          {/* The title leads back to the list (owner, 2026-10-05: the bell alone wasn't found). */}
+          <Button key="notices-header-back" plain label="‹ Notifications" onPress={back} />
+          {list.length > 0 && <Button key="notices-clear" plain dimColor label="Clear all" onPress={() => {
+            void track($, 'notifications_clear_all', { count: list.length })
+            hide(list.map(n => n.id))
+          }} />}
+        </Box>
+      {isLocked ? (
+        // After the trial, as the app's locked state: what they would tell, and where to buy.
+        <Box flexDirection="column" marginTop={1}>
+          <Text>Trial ended – notifications need a license</Text>
+          {([[NOTICE_COLOR.chat, 'This chat is due for /compact'], [NOTICE_COLOR.limit, 'A limit may run out before reset'], [NOTICE_COLOR.skill, 'Claude may skip one of your skills']] as const).map(([color, line], i) => (
+            <Box key={`locked-when-${i}`} gap={1}>
+              <Text color={color}>■</Text>
+              <Text dimColor>{line}</Text>
+            </Box>
+          ))}
+          <Box marginTop={1}>
+            <Button key="notices-buy" plain label="Buy a license on Gumroad" onPress={() => void openBuy($, 'notifications_locked')} />
+          </Box>
+        </Box>
+      ) : list.length === 0 ? (
+        <Box flexDirection="column" marginTop={1}>
+          {/* The app's list (owner's wording, 2026-10-04), with the mod's own cases. */}
+          {/* The cards' colour squares instead of bullets (owner, 2026-10-04). */}
+          {([[NOTICE_COLOR.chat, 'This chat is due for /compact'], [NOTICE_COLOR.limit, 'A limit may run out before reset'], [NOTICE_COLOR.skill, 'Claude may skip one of your skills']] as const).map(([color, line], i) => (
+            <Box key={`empty-${i}`} gap={1}>
+              <Text color={color}>■</Text>
+              <Text dimColor>{line}</Text>
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        groups.map(({ g, items }) => (
+          <Box key={`group-${g}`} flexDirection="column" marginTop={1}>
+            {GROUP_TITLE[g] !== '' && <Text dimColor>{GROUP_TITLE[g]}</Text>}
+            {items.map(n => (
+              <Box key={`notice-${n.id}`} flexDirection="column" marginTop={g === 'now' && n === items[0] ? 0 : 1}>
+                <Box justifyContent="space-between" columnGap={1}>
+                  <Box gap={1} flexShrink={1}>
+                    <Text color={n.color}>■</Text>
+                    {/* One line, never more (owner, 2026-10-04): a long name ends in "…". */}
+                    <Box flexShrink={1}><Text bold wrap="truncate-end">{n.subject ?? n.title}</Text></Box>
+                    {n.subjectType !== undefined && <Box flexShrink={0}><Text dimColor>{n.subjectType}</Text></Box>}
+                    {n.bar !== undefined && <Box>{noticeBar(Text, n)}</Box>}
+                  </Box>
+                  <Button key={`notice-x-${n.id}`} plain dimColor label="✕" onPress={() => dismissOne(n)} />
+                </Box>
+                {n.subject !== undefined && <Text>{n.title}</Text>}
+                {n.body !== undefined && wrapText(n.body, width).map((line, i) => (
+                  <Text key={`notice-b-${n.id}-${i}`} dimColor>{line}</Text>
+                ))}
+                {n.action === 'compact' && (
+                  <Box marginTop={1}>
+                    <Button key={`notice-compact-${n.id}`} label="Compact now" onPress={() => void compactNow($, 'card')} />
+                  </Box>
+                )}
+                {n.action === 'showAgent' && n.subject !== undefined && (
+                  <Box marginTop={1}>
+                    <Button key={`notice-agent-${n.id}`} label="Show agent" onPress={() => void showAgent($, n.subject as string)} />
+                  </Box>
+                )}
+                {/* The app's card menu, in a row: mute, turn the kind off, settings. */}
+                <Box columnGap={2} flexWrap="wrap">
+                  {n.muteKey !== undefined && <Button key={`notice-mute-${n.id}`} plain dimColor label="Mute until tomorrow" onPress={() => void muteNotice($, n)} />}
+                  <Button key={`notice-off-${n.id}`} plain dimColor label={`Stop showing ${KIND_PLURAL[n.kind]}`} onPress={() => void turnNotices($, n.kind, false)} />
+                  <Button key={`notice-settings-${n.id}`} plain dimColor label="Notification settings…" onPress={() => {
+                    void track($, 'notification_settings_open')
+                    void update($, screen, () => 'settings' as const)
+                  }} />
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        ))
+      )}
+        <Box flexGrow={1} />
+        {/* The main screen's footer: the bell in the middle turns back to the list. */}
+        <Box justifyContent="space-between" columnGap={1} paddingRight={1}>
+          <Text dimColor>{`↻ ${clockTime(scanned || now)}`}</Text>
+          <Button key="notices-back" plain label={list.length > 0 ? `${list.length} notifications` : 'Notifications'} onPress={back} />
+          <Button key="notices-settings" plain label="Settings" onPress={() => {
+            void track($, 'settings_open', { from: 'notifications' })
+            void update($, screen, () => 'settings' as const)
+          }} />
+        </Box>
+      </Box>
+      <Text> </Text>
+    </Box>
+  )
+}
+
 async function drawPanel(
   $: Engine,
   e: Parameters<Engine['ui']['resolve']>[0],
@@ -2293,148 +2435,6 @@ async function drawPanel(
               void update($, screen, () => 'settings' as const)
             }}
           />
-        </Box>
-      </Box>
-      <Text> </Text>
-    </Box>
-  )
-}
-
-/** A 10-cell bar in the notice's colour, with a tick where the suggestion starts. */
-function noticeBar(Text: ReturnType<Engine['ui']['resolve']>['Text'], n: Notice): RenderElement[] {
-  const width = 10
-  const full = Math.round(Math.min(1, Math.max(0, n.bar ?? 0)) * width)
-  const markAt = n.mark === undefined ? -1 : Math.min(width - 1, Math.round(n.mark * width))
-  return Array.from({ length: width }, (_, i) =>
-    i === markAt ? (
-      <Text key={`m${i}`}>┃</Text>
-    ) : (
-      <Text key={`c${i}`} color={i < full ? n.color : COLOR.track}>━</Text>
-    ),
-  )
-}
-
-const GROUP_TITLE = { now: '', today: 'TODAY', anytime: 'ANYTIME' } as const
-
-/** The notifications screen: cards by urgency – Now (no header), Today, Anytime. */
-async function renderNotices(
-  $: Engine,
-  ui: ReturnType<Engine['ui']['resolve']>,
-  geom: { columns: number; rows: number; inline: boolean },
-): Promise<RenderElement> {
-  const { Box, Text, Button } = ui
-  const isLocked = await isNoticesLocked($)
-  const list = isLocked ? [] : await currentNotices($)
-  const width = Math.max(16, geom.columns - 2 * PAD_X - 2)
-  const back = () => {
-    void track($, 'notifications_flip', { to: 'front', count: list.length })
-    void update($, screen, () => 'list' as const)
-  }
-  const hide = (ids: string[]) => void update($, dismissed, cur => [...cur, ...ids])
-  const dismissOne = (n: Notice) => {
-    void track($, 'notification_dismiss', { kind: n.kind, via: 'card' })
-    hide([n.id])
-  }
-  const groups = (['now', 'today', 'anytime'] as const).map(g => ({ g, items: list.filter(n => n.group === g) })).filter(x => x.items.length > 0)
-  const scanned = await read($, scannedAt)
-  const now = await $.clock.now()
-  // The main screen's rows (owner, 2026-10-04: same spacing as the first screen):
-  // a blank row, the close mark's row, the header, the cards, the footer pinned below.
-  return (
-    // The main screen's height, so the header and the footer sit on the same rows (owner,
-    // 2026-10-04: content jumped between the screens).
-    // The main screen is `rows` + 2 tall: its list gets `rows − chrome`, and the blank
-    // rows above and below aren't in `chrome` – so the footer lands on the same row.
-    <Box flexDirection="column" height={geom.rows + 2}>
-      <Text> </Text>
-      <Box flexDirection="column" paddingX={PAD_X} flexGrow={1}>
-        <Text> </Text>
-        <Box justifyContent="space-between" columnGap={1}>
-          {/* The title leads back to the list (owner, 2026-10-05: the bell alone wasn't found). */}
-          <Button key="notices-header-back" plain label="‹ Notifications" onPress={back} />
-          {list.length > 0 && <Button key="notices-clear" plain dimColor label="Clear all" onPress={() => {
-            void track($, 'notifications_clear_all', { count: list.length })
-            hide(list.map(n => n.id))
-          }} />}
-        </Box>
-      {isLocked ? (
-        // After the trial, as the app's locked state: what they would tell, and where to buy.
-        <Box flexDirection="column" marginTop={1}>
-          <Text>Trial ended – notifications need a license</Text>
-          {([[NOTICE_COLOR.chat, 'This chat is due for /compact'], [NOTICE_COLOR.limit, 'A limit may run out before reset'], [NOTICE_COLOR.skill, 'Claude may skip one of your skills']] as const).map(([color, line], i) => (
-            <Box key={`locked-when-${i}`} gap={1}>
-              <Text color={color}>■</Text>
-              <Text dimColor>{line}</Text>
-            </Box>
-          ))}
-          <Box marginTop={1}>
-            <Button key="notices-buy" plain label="Buy a license on Gumroad" onPress={() => void openBuy($, 'notifications_locked')} />
-          </Box>
-        </Box>
-      ) : list.length === 0 ? (
-        <Box flexDirection="column" marginTop={1}>
-          {/* The app's list (owner's wording, 2026-10-04), with the mod's own cases. */}
-          {/* The cards' colour squares instead of bullets (owner, 2026-10-04). */}
-          {([[NOTICE_COLOR.chat, 'This chat is due for /compact'], [NOTICE_COLOR.limit, 'A limit may run out before reset'], [NOTICE_COLOR.skill, 'Claude may skip one of your skills']] as const).map(([color, line], i) => (
-            <Box key={`empty-${i}`} gap={1}>
-              <Text color={color}>■</Text>
-              <Text dimColor>{line}</Text>
-            </Box>
-          ))}
-        </Box>
-      ) : (
-        groups.map(({ g, items }) => (
-          <Box key={`group-${g}`} flexDirection="column" marginTop={1}>
-            {GROUP_TITLE[g] !== '' && <Text dimColor>{GROUP_TITLE[g]}</Text>}
-            {items.map(n => (
-              <Box key={`notice-${n.id}`} flexDirection="column" marginTop={g === 'now' && n === items[0] ? 0 : 1}>
-                <Box justifyContent="space-between" columnGap={1}>
-                  <Box gap={1} flexShrink={1}>
-                    <Text color={n.color}>■</Text>
-                    {/* One line, never more (owner, 2026-10-04): a long name ends in "…". */}
-                    <Box flexShrink={1}><Text bold wrap="truncate-end">{n.subject ?? n.title}</Text></Box>
-                    {n.subjectType !== undefined && <Box flexShrink={0}><Text dimColor>{n.subjectType}</Text></Box>}
-                    {n.bar !== undefined && <Box>{noticeBar(Text, n)}</Box>}
-                  </Box>
-                  <Button key={`notice-x-${n.id}`} plain dimColor label="✕" onPress={() => dismissOne(n)} />
-                </Box>
-                {n.subject !== undefined && <Text>{n.title}</Text>}
-                {n.body !== undefined && wrapText(n.body, width).map((line, i) => (
-                  <Text key={`notice-b-${n.id}-${i}`} dimColor>{line}</Text>
-                ))}
-                {n.action === 'compact' && (
-                  <Box marginTop={1}>
-                    <Button key={`notice-compact-${n.id}`} label="Compact now" onPress={() => void compactNow($, 'card')} />
-                  </Box>
-                )}
-                {n.action === 'showAgent' && n.subject !== undefined && (
-                  <Box marginTop={1}>
-                    <Button key={`notice-agent-${n.id}`} label="Show agent" onPress={() => void showAgent($, n.subject as string)} />
-                  </Box>
-                )}
-                {/* The app's card menu, in a row: mute, turn the kind off, settings. */}
-                <Box columnGap={2} flexWrap="wrap">
-                  {n.muteKey !== undefined && <Button key={`notice-mute-${n.id}`} plain dimColor label="Mute until tomorrow" onPress={() => void muteNotice($, n)} />}
-                  <Button key={`notice-off-${n.id}`} plain dimColor label={`Stop showing ${KIND_PLURAL[n.kind]}`} onPress={() => void turnNotices($, n.kind, false)} />
-                  <Button key={`notice-settings-${n.id}`} plain dimColor label="Notification settings…" onPress={() => {
-                    void track($, 'notification_settings_open')
-                    void update($, screen, () => 'settings' as const)
-                  }} />
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        ))
-      )}
-        <Box flexGrow={1} />
-        {/* The main screen's footer: the bell in the middle turns back to the list. */}
-        <Box justifyContent="space-between" columnGap={1} paddingRight={1}>
-          <Text dimColor>{`↻ ${clockTime(scanned || now)}`}</Text>
-          <Button key="notices-back" plain label={list.length > 0 ? `${list.length} notifications` : 'Notifications'} onPress={back} />
-          <Button key="notices-settings" plain label="Settings" onPress={() => {
-            void track($, 'settings_open', { from: 'notifications' })
-            void update($, screen, () => 'settings' as const)
-          }} />
         </Box>
       </Box>
       <Text> </Text>
