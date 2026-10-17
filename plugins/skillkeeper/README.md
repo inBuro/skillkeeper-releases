@@ -43,6 +43,16 @@ The counts go to PostHog (`https://us.i.posthog.com/i/v0/e/`), with a random ins
 - While you work, it sees each tool call and each prompt in the current session, only to note which skill ran and when. It does not keep or send their text.
 - Your limits, by asking Claude Code itself (see `claude -p /usage` below).
 
+### What its hooks do
+
+None of them changes, blocks or approves a tool call or a prompt: each one passes the event on as it came.
+
+- `session.start` – loads the mod's stored counts and scans your skill folders.
+- `tool.call` (any tool, `Skill`, `Read`) and `turn.complete` – note which skill ran and how many tokens the turn used, to fill the list. The text of a call or a turn is not kept.
+- `prompt.submit` – resets the mod's per-prompt marker. It does not read the prompt.
+- `command.run` – notes which slash command ran. For `/skillkeeper` itself it answers the command and draws the panel instead of sending it to Claude; every other command runs as usual.
+- `ui.render` and `ui.scroll` – draw the panel and the line above the prompt, and scroll the panel.
+
 ### What the mod runs
 
 All of these run on your machine, with fixed arguments and the path of a file the mod already reads:
