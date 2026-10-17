@@ -8,6 +8,10 @@
   },
   "license": "UNLICENSED",
   "privacyPolicyUrl": "https://skillkeeper.app/privacy",
+  "homepage": "https://skillkeeper.app",
+  "repository": "https://github.com/inBuro/skillkeeper-releases",
+  "documentationUrl": "https://github.com/inBuro/skillkeeper-releases#readme",
+  "supportUrl": "https://skillkeeper.app/feedback",
   "types": "./types/index.d.ts",
   "userConfig": {
     "licenseKey": {
