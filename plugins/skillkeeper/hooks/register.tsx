@@ -1348,12 +1348,13 @@ function noticeBar(Text: ReturnType<Engine['ui']['resolve']>['Text'], n: Notice)
 
 const GROUP_TITLE = { now: '', today: 'TODAY', anytime: 'ANYTIME' } as const
 
+type NoticesDraw = { ui: ReturnType<Engine['ui']['resolve']>; geom: { columns: number; rows: number; inline: boolean } }
+/** What the notifications screen draws with: set by drawPanel just before it calls renderNotices. */
+let noticesDraw = undefined as unknown as NoticesDraw
+
 /** The notifications screen: cards by urgency – Now (no header), Today, Anytime. */
-async function renderNotices(
-  $: Engine,
-  ui: ReturnType<Engine['ui']['resolve']>,
-  geom: { columns: number; rows: number; inline: boolean },
-): Promise<RenderElement> {
+async function renderNotices($: Engine): Promise<RenderElement> {
+  const { ui, geom } = noticesDraw
   const { Box, Text, Button } = ui
   const isLocked = await isNoticesLocked($)
   const list = isLocked ? [] : await currentNotices($)
@@ -1519,7 +1520,8 @@ async function drawPanel(
 
   // The notifications screen: the app's bell layer, as a screen of the pane.
   if ((await read($, screen)) === 'notifications') {
-    const notices = await renderNotices($, ui, geom)
+    noticesDraw = { ui, geom }
+    const notices = await renderNotices($)
     return notices
   }
 
