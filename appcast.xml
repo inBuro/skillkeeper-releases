@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.11</title>
-            <pubDate>Mon, 19 Oct 2026 11:40:58 +0700</pubDate>
+            <pubDate>Mon, 19 Oct 2026 12:03:06 +0700</pubDate>
             <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.11</h2><p class="date">Release date: 19 Oct 2026</p><h3>New in 2.11</h3><ul><li>Free plan keeps the Week window; 5h, 24h and Month need a license</li><li>After the trial, 5 skills can be paused for free; the row shows how many pauses are left</li><li>The cache-expired card shows how long ago the cache ran out and fades an hour later</li><li>A skill description over the limit is marked orange instead of red</li><li>Fixes: license activation on server errors, transcripts with long first lines, archive dates in Buddhist-calendar regions</li></ul></body></html>]]></description>
-            <sparkle:version>51</sparkle:version>
+            <sparkle:version>52</sparkle:version>
             <sparkle:shortVersionString>2.11</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5030467" type="application/octet-stream" sparkle:edSignature="za2TTSjNBHbImvRh6mWYxktem5wQxwYE10AGz43ZT6R9/JjPQ0szDiWEcfBME5wbMaWS9a0iPYTo0ySXags+Dg=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5034716" type="application/octet-stream" sparkle:edSignature="rBuVWm70btT4V+D/IEpEY8z5t7K7MGusvh7/MFfhyQiqNej/exksBAXMv/vrHgQPOkRloATDfqfPkCdlK/MpCQ=="/>
         </item>
         <item>
             <title>2.10</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5023398" type="application/octet-stream" sparkle:edSignature="qLXBygTqnxJFAtExLlcMbycGdvGWT3zRNFdtuaNx80lA89yUlQDS+OKWTI3hPudkBwyiw8wmNpFFDyUjoGomDQ=="/>
-        </item>
-        <item>
-            <title>2.09</title>
-            <pubDate>Wed, 14 Oct 2026 12:34:13 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.09</h2><p class="date">Release date: 14 Oct 2026</p><h3>New in 2.09</h3><ul><li>Minor UX/UI improvements</li></ul></body></html>]]></description>
-            <sparkle:version>48</sparkle:version>
-            <sparkle:shortVersionString>2.09</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="4790925" type="application/octet-stream" sparkle:edSignature="Xo95Kk1EwInoAPTBG57NzUTo3/UW/S9Eircx3SG2VNnojTTlDY5RVY9aooAvqiu7RVGupqVh3g7SSih5bo0mBA=="/>
         </item>
     </channel>
 </rss>
