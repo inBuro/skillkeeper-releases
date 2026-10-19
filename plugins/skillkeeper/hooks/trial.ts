@@ -68,5 +68,5 @@ export function buyUrl(distinctId: string | undefined): string {
 
 /** The locked line: `this Mac` on a Mac, `this computer` elsewhere. */
 export function lockedLine(isMac: boolean): string {
-  return `Trial already used on ${isMac ? 'this Mac' : 'this computer'}. 5h, Week and Month need a license`
+  return `Trial already used on ${isMac ? 'this Mac' : 'this computer'}. 5h, 24h and Month need a license`
 }

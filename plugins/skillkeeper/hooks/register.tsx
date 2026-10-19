@@ -145,16 +145,16 @@ const sessionStart = atom({ plugin: 'skillkeeper', key: 'sessionStart' } as cons
 const hidden = atom({ plugin: 'skillkeeper', key: 'hidden' } as const, null as Hidden | null)
 const baseline = atom({ plugin: 'skillkeeper', key: 'baseline' } as const, null as string[] | null)
 const EMPTY_ACTIVITY: Activity = { agents: {}, tools: {}, mcp: {}, commands: {}, sessions: {}, memory: {}, hooks: {}, plugins: {} }
-// As the app: a launch starts on All and 24h; the sort, the dropdown kind and the
+// As the app: a launch starts on All and Week (the free window); the sort, the dropdown kind and the
 // limit window are remembered.
 const DEFAULT_VIEW: View = {
-  period: 'day',
+  period: 'week',
   sort: 'count',
   collapsed: [],
   source: 'all',
   dropdown: 'agents',
   isMenuOpen: false,
-  limit: 'five_hour',
+  limit: 'seven_day',
   expanded: [],
   pinnedShowsTotal: true,
 }
@@ -1169,7 +1169,7 @@ async function countTrialDay($: Engine): Promise<void> {
   await showTrial($, counted)
 }
 
-/** Week, Month and skill edits: a good key, or the trial still running. */
+/** 5h, 24h, Month and skill edits: a good key, or the trial still running. */
 async function isUnlocked($: Engine): Promise<boolean> {
   return !PAYWALL || (await read($, license)).isPro || (await read($, trial)).isActive
 }
@@ -1258,7 +1258,7 @@ async function setPeriod($: Engine, period: Period): Promise<void> {
   await update($, scroll, () => 0)
   if (!isPeriodOpen(period, await isUnlocked($))) {
     void track($, 'timeframe_locked', { value: period })
-    $.ui.toast('skillkeeper · 5h, Week and Month need a license')
+    $.ui.toast('skillkeeper · 5h, 24h and Month need a license')
     return
   }
   // The limit readout follows the period: the 5-hour limit for 5h and 24h, the week's
@@ -1510,7 +1510,7 @@ async function drawPanel(
   const v = await read($, view)
   const lic = await read($, license)
   const trialView = await read($, trial)
-  // Paid after the trial: Week, Month, skill edits, notifications; duplicate-trigger marks too, as in the app.
+  // Paid after the trial: 5h, 24h, Month, skill edits, notifications; duplicate-trigger marks too, as in the app.
   const pro = isProOpen(lic.isPro || trialView.isActive)
   const isLocked = PAYWALL && trialView.isLoaded && !pro
   // Locked, the bell counts nothing, as the app's.

@@ -5,7 +5,7 @@
 
 import type { Period } from '../types'
 
-/** On: after the shared trial (trial.ts), Week, Month and skill edits need a key. */
+/** On: after the shared trial (trial.ts), 5h, 24h, Month and skill edits need a key. */
 export const PAYWALL = true
 
 export const ACTIVATE_URL = 'https://fadercraft.com/api/skillkeeper-activate'
@@ -35,8 +35,8 @@ export function activationError(text: string): string | undefined {
 
 export function isPeriodOpen(period: Period, isPro: boolean): boolean {
   if (!PAYWALL || isPro) return true
-  // Only 24h stays free (owner, 2026-10-15); 5h, Week and Month need a license.
-  return period === 'day'
+  // Only Week stays free (owner, 2026-10-19; 24h was free from 2026-10-15); 5h, 24h and Month need a license.
+  return period === 'week'
 }
 
 /** What the store keeps about a key: its hash and the last verdict, never the key. */
