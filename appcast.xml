@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.11</title>
-            <pubDate>Mon, 19 Oct 2026 23:37:55 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.11</h2><p class="date">Release date: 19 Oct 2026</p><h3>New in 2.11</h3><ul><li>Free plan keeps the Week window; 5h, 24h and Month need a license</li><li>After the trial, 5 skills can be paused for free; the row shows how many pauses are left</li><li>The cache-expired card shows how long ago the cache ran out and fades an hour later</li><li>A skill description over the limit is marked orange instead of red</li><li>Fixes: license activation on server errors, transcripts with long first lines, archive dates in Buddhist-calendar regions</li></ul></body></html>]]></description>
-            <sparkle:version>54</sparkle:version>
+            <pubDate>Sun, 25 Oct 2026 00:32:01 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.11</h2><p class="date">Release date: 25 Oct 2026</p><h3>New in 2.11</h3><ul><li>Free plan keeps the Week window; 5h, 24h and Month need a license</li><li>After the trial, 5 skills can be paused for free; the row shows how many pauses are left</li><li>The cache-expired card shows how long ago the cache ran out and fades an hour later</li><li>A skill description over the limit is marked orange instead of red</li><li>Fixes: license activation on server errors, transcripts with long first lines, archive dates in Buddhist-calendar regions</li></ul></body></html>]]></description>
+            <sparkle:version>55</sparkle:version>
             <sparkle:shortVersionString>2.11</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5008766" type="application/octet-stream" sparkle:edSignature="USM/vIj7Ox+AeJIHf004Xf94BhagAhyUrklchEKFhA3QtOvg30MdWmJe3FOlf1KFa2PZ8o0StB/K9WAEiG9gAw=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5041255" type="application/octet-stream" sparkle:edSignature="2+M7ahFYx5YBPxyjVm6/STTE1t5npXcfQ7iXIs4YMsgAchpoYSaGmo8qWTFE/0wijVUxKWGYNaMontJGAYVLAw=="/>
         </item>
         <item>
             <title>2.10</title>
