@@ -8,7 +8,7 @@ import type { Period } from '../types'
 /** On: after the shared trial (trial.ts), 5h, 24h, Month and skill edits need a key. */
 export const PAYWALL = true
 
-export const ACTIVATE_URL = 'https://fadercraft.com/api/skillkeeper-activate'
+export const ACTIVATE_URL = 'https://api.tinyapps.space/skillkeeper/activate'
 export const RECHECK_MS = 7 * 86_400_000
 
 // Order number and 16 hex – the server alone checks the rest (2026-10-05).

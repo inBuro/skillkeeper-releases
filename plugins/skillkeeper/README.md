@@ -34,7 +34,7 @@ The mod reads your local Claude Code history (`~/.claude/projects`) and skill fi
 
 It sends anonymous usage counts – the panel opened, a tab or period picked – as the macOS app does. Never a skill's name, its text or your files. To send nothing, set **Anonymous usage counts** to `off` in `/plugin` → SkillKeeper → Configure options.
 
-The counts go to PostHog (`https://us.i.posthog.com/i/v0/e/`), with a random install ID kept in the mod's own storage. When you enter a license key, the mod also sends the key and a random device ID to `https://fadercraft.com/api/skillkeeper-activate` to check it. Those are the only two addresses the mod contacts; nothing else leaves your machine.
+The counts go to PostHog (`https://us.i.posthog.com/i/v0/e/`), with a random install ID kept in the mod's own storage. When you enter a license key, the mod also sends the key and a random device ID to `https://api.tinyapps.space/skillkeeper/activate` to check it. Those are the only two addresses the mod contacts; nothing else leaves your machine.
 
 ### What the mod reads
 

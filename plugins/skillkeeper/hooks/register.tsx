@@ -1204,7 +1204,7 @@ async function checkLicense($: Engine, key: string): Promise<void> {
       deviceId = newDeviceId()
       await $.store.set('deviceId', deviceId)
     }
-    const answer = await $.http.fetch('https://fadercraft.com/api/skillkeeper-activate', {
+    const answer = await $.http.fetch(ACTIVATE_URL, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ license: key.trim(), device_id: deviceId, supports_expiry: true }),
