@@ -18,7 +18,7 @@ import {
   type StoredLicense,
 } from './license'
 import { OWNER_ID, POSTHOG_CAPTURE, captureBody, isOwnerHome, type EventProps } from './analytics'
-import { TRIAL_DAYS, buyUrl, countDay, dayNumber, isTrialActive, lockedLine, mergeTrials, parseTrial, trialFile, type TrialState } from './trial'
+import { buyUrl, countDay, dayNumber, formatLeft, isTrialActive, lockedLine, mergeTrials, parseTrial, trialFile, trialMinutesLeft, type TrialState } from './trial'
 import { KIND_PLURAL, NOTICE_KINDS, NOTICE_COLOR, outdatedLabel, spikeNotices, tomorrow, visibleNotices, addSamples, allNotices, libraryNotices, limitNotices, modelNotices, sessionNotices, type Notice } from './notify'
 import { appendCommand, appendTriggers, commandFile, removeCommand, removeTrigger, renameTrigger, type EditResult } from './edit'
 import { BUILTIN_COMMANDS, NEW_CARRY, bareName, classifyTool, invokedName, parseFile, parseFrontmatter, sessionTitle, skillRead, type FileCall, type FileCarry, type FileCharge, type FileIndex, type FileModel } from './parse'
@@ -196,7 +196,7 @@ const license = atom({ plugin: 'skillkeeper', key: 'license' } as const, {
   isPro: false,
   checkedAt: null,
 } as License)
-const trial = atom({ plugin: 'skillkeeper', key: 'trial' } as const, { isLoaded: false, isActive: true, days: 0 } as TrialView)
+const trial = atom({ plugin: 'skillkeeper', key: 'trial' } as const, { isLoaded: false, isActive: true, days: 0, minutesLeft: 0 } as TrialView)
 
 type Engine = EngineInterface
 
@@ -1138,7 +1138,7 @@ async function trialProps($: Engine, state: TrialState): Promise<EventProps> {
 async function showTrial($: Engine, state: TrialState): Promise<void> {
   const now = await $.clock.now()
   const isActive = isTrialActive(state, now)
-  await update($, trial, () => ({ isLoaded: true, isActive, days: dayNumber(state, now) }))
+  await update($, trial, () => ({ isLoaded: true, isActive, days: dayNumber(state, now), minutesLeft: trialMinutesLeft(state, now) }))
   if (!isActive && !(await $.store.get('trialEndedSent'))) {
     await $.store.set('trialEndedSent', true)
     void track($, 'trial_ended', await trialProps($, state), false)
@@ -1570,14 +1570,14 @@ async function drawPanel(
                 <Text dimColor>Enter the key in /config</Text>
               )}
               {!PAYWALL ? (
-                <Text dimColor>Every feature is free for 3 days. One key works for the mod and the macOS app</Text>
+                <Text dimColor>Every feature is free for 5 hours. One key works for the mod and the macOS app</Text>
               ) : isLocked ? (
                 <Box gap={1}>
                   <Text dimColor>{lockedLine(isMac)}</Text>
                   <Button key="settings-buy" plain label="Buy · $19" onPress={() => void openBuy($, 'settings')} />
                 </Box>
               ) : (
-                trialView.isLoaded && <Text dimColor>{`Trial: day ${Math.max(1, trialView.days)} of ${TRIAL_DAYS}`}</Text>
+                trialView.isLoaded && <Text dimColor>{`Trial: ${formatLeft(trialView.minutesLeft)} left`}</Text>
               )}
             </>
           )}

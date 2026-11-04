@@ -1,8 +1,8 @@
 // The trial, shared with the macOS app: one per machine (docs/shared_trial_spec.md).
 // Pure: reading and writing ~/.claude/skillkeeper/trial.json lives in register.tsx.
 
-/** Days counted from install, opened or not (owner, 2026-10-14): the app's MonetizationConfig. */
-export const TRIAL_DAYS = 3
+/** Hours counted from install by the clock, opened or not (owner, 2026-11-04: 5): the app's MonetizationConfig. */
+export const TRIAL_HOURS = 5
 
 /** What the file and the store keep: `start` in Unix seconds, `last` a local `yyyy-MM-dd`. */
 export type TrialState = { start: number; days: number; last: string }
@@ -45,9 +45,21 @@ export function countDay(state: TrialState, nowMs: number): TrialState {
   return { ...state, days: dayNumber(state, nowMs), last: today }
 }
 
-/** Open through the 3rd day since install, opened or not; the 4th locks. */
+/** Open for the first TRIAL_HOURS since install, opened or not; then locked. */
 export function isTrialActive(state: TrialState, nowMs: number): boolean {
-  return dayNumber(state, nowMs) <= TRIAL_DAYS
+  return Math.max(0, nowMs / 1000 - state.start) < TRIAL_HOURS * 3600
+}
+
+/** Whole minutes left in the trial, 0 once it is over. */
+export function trialMinutesLeft(state: TrialState, nowMs: number): number {
+  return Math.max(0, Math.ceil((TRIAL_HOURS * 3600 - Math.max(0, nowMs / 1000 - state.start)) / 60))
+}
+
+/** `4h 20m`, `45m`: the time left, as the settings line shows it. */
+export function formatLeft(minutes: number): string {
+  const h = Math.floor(minutes / 60)
+  const m = minutes % 60
+  return h > 0 ? `${h}h ${m}m` : `${m}m`
 }
 
 /** A local calendar day, as the app writes `last`. */

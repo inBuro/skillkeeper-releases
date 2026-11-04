@@ -68,8 +68,8 @@ export type Hidden = { total: number; included: number; names: string[] }
 
 export type License = { isPro: boolean; checkedAt: number | null }
 
-/** The shared trial as the panel reads it: open or over, and the active days counted. */
-export type TrialView = { isLoaded: boolean; isActive: boolean; days: number }
+/** The shared trial as the panel reads it: open or over, the day number and the minutes left. */
+export type TrialView = { isLoaded: boolean; isActive: boolean; days: number; minutesLeft: number }
 
 /** One reading of a rate-limit window, for the limit forecast (`hooks/notify.ts`). */
 export type LimitSample = { kind: string; at: number; used: number; resetsAt: number }
