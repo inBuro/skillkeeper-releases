@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.12</title>
-            <pubDate>Wed, 04 Nov 2026 17:22:51 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.12</h2><p class="date">Release date: 4 Nov 2026</p><h3>New in 2.12</h3><ul><li>The free demo lasts 5 hours from install instead of 3 days; the mod shows the time left</li><li>The Rate app prompt appears 2 hours after install</li><li>The icons next to the bolt in the menu bar slide smoothly when the number changes width</li></ul></body></html>]]></description>
-            <sparkle:version>57</sparkle:version>
+            <pubDate>Thu, 05 Nov 2026 12:45:22 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.12</h2><p class="date">Release date: 5 Nov 2026</p><h3>New in 2.12</h3><ul><li>The free demo lasts 5 hours from install instead of 3 days; the mod shows the time left</li><li>The Rate app prompt appears 2 hours after install</li><li>The icons next to the bolt in the menu bar slide smoothly when the number changes width</li></ul></body></html>]]></description>
+            <sparkle:version>58</sparkle:version>
             <sparkle:shortVersionString>2.12</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5225981" type="application/octet-stream" sparkle:edSignature="mleAcEaDvjo+8Hjl12FAZsQOnvNZA77HUvM+Z8e2lGs4jIomPMcnbUzhotpDc6EfPfSudW52K3q8ORhHz2UYDw=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5252464" type="application/octet-stream" sparkle:edSignature="CRftto+XjIcuwNJS93gkCtWlxxdTwzvOL11NEbqPhDWI0pLVeiFytt+rED/hxpsK6U/ZytAf8gl/sQ2tp8hLCg=="/>
         </item>
         <item>
             <title>2.11</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5041412" type="application/octet-stream" sparkle:edSignature="AIgcE/T7/gtrsPcfYEkLqGaKvcvL2DFQ/YK74spIxE1kYj5wQD7HCx9047/IXOLI60JaSa5ZMmFLfFO8iARiAw=="/>
-        </item>
-        <item>
-            <title>2.10</title>
-            <pubDate>Sat, 17 Oct 2026 02:10:08 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.10</h2><p class="date">Release date: 17 Oct 2026</p><h3>New in 2.10</h3><ul><li>Updates for skills and plugins from any source: skills.sh, plugin marketplaces and git clones. Checked once a day, with Update with backup and Undo</li><li>New "Pay attention" card when the last hour used more tokens than any hour in 30 days, with the reason: a heavier model or the tool that took most</li><li>The number next to the bolt in the menu bar matches the limit in the panel header</li><li>Opens on the Month window and remembers your pick</li><li>Free plan: the 24h window; 5h, Week and Month need a license</li></ul></body></html>]]></description>
-            <sparkle:version>50</sparkle:version>
-            <sparkle:shortVersionString>2.10</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5023398" type="application/octet-stream" sparkle:edSignature="qLXBygTqnxJFAtExLlcMbycGdvGWT3zRNFdtuaNx80lA89yUlQDS+OKWTI3hPudkBwyiw8wmNpFFDyUjoGomDQ=="/>
         </item>
     </channel>
 </rss>
