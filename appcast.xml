@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.13</title>
-            <pubDate>Thu, 05 Nov 2026 21:28:47 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.13</h2><p class="date">Release date: 15 Sep 2026</p><h3>New in 2.13</h3><ul><li>Fixed: the notifications layer showed made-up sample cards next to the real ones</li><li>Fixed: scrolling and hovering over rows on the All tab was slow on a large history</li><li>Fixed: Show unused on the unused-skills card left the unused list folded, it now opens it</li></ul></body></html>]]></description>
-            <sparkle:version>59</sparkle:version>
+            <pubDate>Sat, 07 Nov 2026 15:08:00 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.13</h2><p class="date">Release date: 7 Nov 2026</p><h3>New in 2.13</h3><ul><li>Fixed: the notifications layer showed made-up sample cards next to the real ones</li><li>Fixed: scrolling and hovering over rows on the All tab was slow on a large history</li><li>Fixed: Show unused on the unused-skills card left the unused list folded, it now opens it</li></ul></body></html>]]></description>
+            <sparkle:version>60</sparkle:version>
             <sparkle:shortVersionString>2.13</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5307866" type="application/octet-stream" sparkle:edSignature="JpvcJt3LjNRveig7eQA+qMC8ulyFkBpwKvzM/8k+lApH5PsV8dZsy6W3vPSxYPbMb6Swb0Ren0nfOS+lHcykCA=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5307879" type="application/octet-stream" sparkle:edSignature="EZ4fHIzuveoODpaNogd3h1r17s5azpTjfDWtZKqicl3SHwdRy+RyTW+QD2sr45MmJpfyxb3v3VhDupU4Hs/pDQ=="/>
         </item>
         <item>
             <title>2.12</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5252464" type="application/octet-stream" sparkle:edSignature="CRftto+XjIcuwNJS93gkCtWlxxdTwzvOL11NEbqPhDWI0pLVeiFytt+rED/hxpsK6U/ZytAf8gl/sQ2tp8hLCg=="/>
-        </item>
-        <item>
-            <title>2.11</title>
-            <pubDate>Mon, 26 Oct 2026 20:55:03 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.11</h2><p class="date">Release date: 26 Oct 2026</p><h3>New in 2.11</h3><ul><li>Free plan keeps the Week window; 5h, 24h and Month need a license</li><li>After the trial, 5 skills can be paused for free; the row shows how many pauses are left</li><li>The cache-expired card shows how long ago the cache ran out and fades an hour later</li><li>A skill description over the limit is marked orange instead of red</li><li>Fixes: license activation on server errors, transcripts with long first lines, archive dates in Buddhist-calendar regions</li></ul></body></html>]]></description>
-            <sparkle:version>56</sparkle:version>
-            <sparkle:shortVersionString>2.11</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5041412" type="application/octet-stream" sparkle:edSignature="AIgcE/T7/gtrsPcfYEkLqGaKvcvL2DFQ/YK74spIxE1kYj5wQD7HCx9047/IXOLI60JaSa5ZMmFLfFO8iARiAw=="/>
         </item>
     </channel>
 </rss>
