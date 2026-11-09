@@ -3,9 +3,19 @@
     <channel>
         <title>SkillKeeper</title>
         <item>
+            <title>2.14</title>
+            <pubDate>Mon, 09 Nov 2026 13:05:15 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.14</h2><p class="date">Release date: 9 Nov 2026</p><h3>New in 2.14</h3><ul><li>After the demo ends, the lists blur from top to bottom and stop scrolling until you add a license</li></ul></body></html>]]></description>
+            <sparkle:version>61</sparkle:version>
+            <sparkle:shortVersionString>2.14</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5361138" type="application/octet-stream" sparkle:edSignature="YuRCFttH/5BUVdNUMxrQCtjxJ18VbozpEfGP0PptdtO+wOaRqZ98QhmHjZ8jKvBJ/ySGL7ZQvGFV+NH7ZJZ/Dg=="/>
+        </item>
+        <item>
             <title>2.13</title>
             <pubDate>Sat, 07 Nov 2026 15:08:00 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.13</h2><p class="date">Release date: 7 Nov 2026</p><h3>New in 2.13</h3><ul><li>Fixed: the notifications layer showed made-up sample cards next to the real ones</li><li>Fixed: scrolling and hovering over rows on the All tab was slow on a large history</li><li>Fixed: Show unused on the unused-skills card left the unused list folded, it now opens it</li></ul></body></html>]]></description>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.13</h2><p class="date">Release date: 7 Nov 2026</p><h3>New in 2.13</h3><ul><li>Free plan keeps the Month window; 5h, 24h and Week need a license</li><li>Fixed: the notifications layer showed made-up sample cards next to the real ones</li><li>Fixed: scrolling and hovering over rows on the All tab was slow on a large history</li><li>Fixed: Show unused on the unused-skills card left the unused list folded, it now opens it</li></ul></body></html>]]></description>
             <sparkle:version>60</sparkle:version>
             <sparkle:shortVersionString>2.13</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
