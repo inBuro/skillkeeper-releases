@@ -35,8 +35,8 @@ export function activationError(text: string): string | undefined {
 
 export function isPeriodOpen(period: Period, isPro: boolean): boolean {
   if (!PAYWALL || isPro) return true
-  // Only Week stays free (owner, 2026-10-19; 24h was free from 2026-10-15); 5h, 24h and Month need a license.
-  return period === 'week'
+  // Only Month stays free (owner, 2026-11-05; Week from 2026-10-19, 24h from 2026-10-15); 5h, 24h and Week need a license.
+  return period === 'month'
 }
 
 /** What the store keeps about a key: its hash and the last verdict, never the key. */

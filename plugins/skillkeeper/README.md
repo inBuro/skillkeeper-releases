@@ -34,6 +34,8 @@ The mod reads your local Claude Code history (`~/.claude/projects`) and skill fi
 
 It sends anonymous usage counts – the panel opened, a tab or period picked – as the macOS app does. Never a skill's name, its text or your files. To send nothing, set **Anonymous usage counts** to `off` in `/plugin` → SkillKeeper → Configure options.
 
+**Updates.** Once a day the mod asks Claude Code to refresh its marketplace and update the plugin (`claude plugin marketplace update` and `claude plugin update`, the same as by hand); Claude Code fetches the new version from GitHub, and it loads the next time Claude Code starts. To update by hand instead, set **Update automatically** to `off` in the same place.
+
 The counts go to PostHog (`https://us.i.posthog.com/i/v0/e/`), with a random install ID kept in the mod's own storage. When you enter a license key, the mod also sends the key and a random device ID to `https://api.tinyapps.space/skillkeeper/activate` to check it. Those are the only two addresses the mod contacts; nothing else leaves your machine.
 
 ### What the mod reads

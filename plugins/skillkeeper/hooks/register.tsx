@@ -145,10 +145,10 @@ const sessionStart = atom({ plugin: 'skillkeeper', key: 'sessionStart' } as cons
 const hidden = atom({ plugin: 'skillkeeper', key: 'hidden' } as const, null as Hidden | null)
 const baseline = atom({ plugin: 'skillkeeper', key: 'baseline' } as const, null as string[] | null)
 const EMPTY_ACTIVITY: Activity = { agents: {}, tools: {}, mcp: {}, commands: {}, sessions: {}, memory: {}, hooks: {}, plugins: {} }
-// As the app: a launch starts on All and Week (the free window); the sort, the dropdown kind and the
+// As the app: a launch starts on All and Month (the free window); the sort, the dropdown kind and the
 // limit window are remembered.
 const DEFAULT_VIEW: View = {
-  period: 'week',
+  period: 'month',
   sort: 'count',
   collapsed: [],
   source: 'all',
@@ -234,7 +234,31 @@ const SOURCE_CARDS: ReadonlySet<Kind> = new Set<Kind>(['sessions', 'tools', 'mcp
 
 /** Usage counts on (the `usageAnalytics` option); the session's surface, for every event. */
 let analyticsOn = true
+/** Self-update on (the `autoUpdate` option): the mod keeps itself current, nothing for the user to do. */
+let autoUpdate = true
 let surfaceName = 'terminal'
+
+/**
+ * Keeps the mod current without the user: at most once a day it asks Claude Code to refresh this
+ * marketplace and update the plugin, as `claude plugin update` does by hand. The new version loads on
+ * the next start of Claude Code. The only thing sent is the exit code, to know the update runs.
+ */
+async function selfUpdate($: Engine): Promise<void> {
+  if (!autoUpdate || isHeadless) return
+  try {
+    const now = await $.clock.now()
+    const last = (await $.store.get('updateCheckedAt')) as number | undefined
+    if (typeof last === 'number' && now - last < DAY) return
+    await $.store.set('updateCheckedAt', now)
+    const refreshed = await $.process.run(['claude', 'plugin', 'marketplace', 'update', 'skillkeeper'], { timeoutMs: 60_000 }).catch(() => undefined)
+    if (!refreshed || refreshed.exitCode !== 0) {
+      void track($, 'mod_update_check', { step: 'marketplace', exit_code: refreshed?.exitCode ?? -1 }, false)
+      return
+    }
+    const run = await $.process.run(['claude', 'plugin', 'update', 'skillkeeper@skillkeeper'], { timeoutMs: 120_000 }).catch(() => undefined)
+    void track($, 'mod_update_check', { step: 'update', exit_code: run?.exitCode ?? -1 }, false)
+  } catch {}
+}
 
 /**
  * Sends one event, as the app's `Analytics.capture`; `ui` presses go as
@@ -493,7 +517,7 @@ const shownNotices = new Set<string>()
 const shownBands = new Set<string>()
 
 /** Every notification now: this session's compact, limit forecasts, skill and model problems. */
-async function currentNotices($: Engine): Promise<Notice[]> {
+async function currentNotices($: Engine, announce = true): Promise<Notice[]> {
   const all = allNotices(
     [
       sessionNotices(await read($, context)),
@@ -505,7 +529,9 @@ async function currentNotices($: Engine): Promise<Notice[]> {
     await read($, dismissed),
   )
   const list = visibleNotices(all, await read($, noticesOff), await read($, muted), await $.clock.now())
-  // Each new occurrence once, as the app's `notification_shown`: kind and group only.
+  // Each new occurrence once, as the app's `notification_shown`: kind and group only. Locked, nothing is
+  // shown and so nothing is counted (the app, owner 2026-11-05): `announce` is false for the count.
+  if (!announce) return list
   for (const n of list) {
     if (shownNotices.has(n.id)) continue
     shownNotices.add(n.id)
@@ -1258,7 +1284,7 @@ async function setPeriod($: Engine, period: Period): Promise<void> {
   await update($, scroll, () => 0)
   if (!isPeriodOpen(period, await isUnlocked($))) {
     void track($, 'timeframe_locked', { value: period })
-    $.ui.toast('skillkeeper · 5h, 24h and Month need a license')
+    $.ui.toast('skillkeeper · 5h, 24h and Week need a license')
     return
   }
   // The limit readout follows the period: the 5-hour limit for 5h and 24h, the week's
@@ -1356,6 +1382,8 @@ async function renderNotices($: Engine): Promise<RenderElement> {
   const { Box, Text, Button } = ui
   const isLocked = await isNoticesLocked($)
   const list = isLocked ? [] : await currentNotices($)
+  // As the app's locked screen: how many cards the lock holds back, shown to the person, not counted.
+  const heldBack = isLocked ? (await currentNotices($, false)).length : 0
   const width = Math.max(16, geom.columns - 2 * PAD_X - 2)
   const back = () => {
     void track($, 'notifications_flip', { to: 'front', count: list.length })
@@ -1391,7 +1419,7 @@ async function renderNotices($: Engine): Promise<RenderElement> {
       {isLocked ? (
         // After the trial, as the app's locked state: what they would tell, and where to buy.
         <Box flexDirection="column" marginTop={1}>
-          <Text>Trial ended – notifications need a license</Text>
+          <Text>{heldBack === 0 ? 'Trial ended – notifications need a license' : `Trial ended – ${heldBack} ${heldBack === 1 ? 'notification' : 'notifications'} will be shown after you buy a license`}</Text>
           {([[NOTICE_COLOR.chat, 'This chat is due for /compact'], [NOTICE_COLOR.limit, 'A limit may run out before reset'], [NOTICE_COLOR.skill, 'Claude may skip one of your skills']] as const).map(([color, line], i) => (
             <Box key={`locked-when-${i}`} gap={1}>
               <Text color={color}>■</Text>
@@ -2449,6 +2477,7 @@ export const register: Register = (on, options) => {
   let cwd = '.'
   const licenseKey = typeof options.licenseKey === 'string' ? options.licenseKey : ''
   analyticsOn = options.usageAnalytics !== 'off'
+  autoUpdate = options.autoUpdate !== 'off'
   extraFolders = (typeof options.extraSkillFolders === 'string' ? options.extraSkillFolders : '')
     .split(',')
     .map(f => f.trim().replace(/\/+$/, ''))
@@ -2477,6 +2506,11 @@ export const register: Register = (on, options) => {
     if (isHeadless) return next(e)
     surfaceName = (await $.session.surface().catch(() => null)) ?? 'terminal'
     void track($, 'app_launched', {}, false)
+    // The app's `heartbeat` (every 29 minutes while the process lives): here it proves a session
+    // is open. Same event name, so liveness tiles count the mod's installs too; `source: cc-mod`
+    // on every event tells them apart.
+    $.clock.every(29 * 60_000, () => void track($, 'heartbeat', {}, false))
+    void selfUpdate($)
     await scanLive($)
     // Limits fresh from the start: poll at start and after a turn once 5 minutes pass.
     void pollUsage($)
