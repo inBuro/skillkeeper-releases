@@ -27,7 +27,7 @@ Then run `/skillkeeper`.
 - 🔔 in the footer – notifications: when this chat should compact (**Compact now** runs `/compact` here), limits about to run out, skills Claude may skip, agents on an older model.
 - Above the prompt – a line when this chat should compact, with **Compact now**.
 - Settings, in the footer – license key and extra skill folders.
-- 🐞 in the footer – report a bug: versions and counts go to the clipboard and the report page on skillkeeper.app opens with the same ones attached; you write what broke. Nothing is sent until you press **Send** there.
+- Settings → 🐞 Report a bug – versions and counts go to the clipboard and the report page on skillkeeper.app opens with the same ones attached; you write what broke. Nothing is sent until you press **Send** there.
 
 ## Privacy
 

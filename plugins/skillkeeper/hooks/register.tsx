@@ -1206,38 +1206,35 @@ async function isNoticesLocked($: Engine): Promise<boolean> {
 }
 
 /** The buy page, tagged so a sale ties back to this install; the app's event for the click. */
-/** The site's feedback page, opened as the bug report (`?utm_content=bug`), the diagnostics in the fragment. */
+/** The site's feedback page, opened as the bug report (`?utm_content=bug`), the text in the fragment. */
 const BUG_REPORT_URL = 'https://skillkeeper.app/feedback?utm_content=bug'
 
 /**
- * What a bug report carries, as the app's: versions, system and counts – never a skill's name,
- * a path or a file. The person sees all of it on the page before anything is sent.
+ * The bug report's text, as the app's Settings → ladybug copies its diagnostics: versions, system and
+ * counts as plain lines – never a skill's name, a path or a file. The person sees all of it on the
+ * page, folded, before anything is sent.
  */
-async function bugDiagnostics($: Engine): Promise<Record<string, string | number | boolean>> {
+async function bugReportText($: Engine): Promise<string> {
   const claude = await $.process.run(['claude', '--version'], { timeoutMs: 5_000 }).catch(() => undefined)
   const dir = await home($)
-  return {
-    v: 1,
-    client: 'cc-mod',
-    version,
-    surface: surfaceName,
-    os: dir.startsWith('/Users/') ? 'macOS' : dir.startsWith('/home/') ? 'Linux' : 'Windows',
-    claude_code: claude?.exitCode === 0 ? claude.stdout.trim().slice(0, 40) : 'unknown',
-    skills: (await read($, library)).length,
-    extra_folders: extraFolders.length,
-    unlocked: await isUnlocked($),
-  }
+  const os = dir.startsWith('/Users/') ? 'macOS' : dir.startsWith('/home/') ? 'Linux' : 'Windows'
+  return [
+    `SkillKeeper mod ${version}`,
+    `Claude Code ${claude?.exitCode === 0 ? claude.stdout.trim().slice(0, 40) : 'unknown'}, ${surfaceName}, ${os}`,
+    `Skills: ${(await read($, library)).length}, extra folders: ${extraFolders.length}`,
+    `License: ${(await isUnlocked($)) ? 'unlocked' : 'free'}`,
+  ].join('\n')
 }
 
 /**
- * The 🐞 in the footer: the diagnostics go to the clipboard (to paste anywhere) and the report
- * page opens with the same ones attached, so the person has nothing else to do but write what broke.
+ * The 🐞 in Settings, where the app's ladybug is: the text goes to the clipboard (to paste anywhere)
+ * and the report page opens with the same text attached, so the person only writes what broke.
  */
 async function reportBug($: Engine, surface: string): Promise<void> {
-  const data = await bugDiagnostics($)
-  const json = JSON.stringify(data)
-  const fragment = btoa(json).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-  void $.ui.copy({ text: `SkillKeeper bug report\n${JSON.stringify(data, null, 2)}`, surface }).catch(() => undefined)
+  const report = await bugReportText($)
+  const bytes = new TextEncoder().encode(JSON.stringify({ v: 1, client: 'cc-mod', report }))
+  const fragment = btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  void $.ui.copy({ text: `${report}\n`, surface }).catch(() => undefined)
   await openFile($, `${BUG_REPORT_URL}#d=${fragment}`)
 }
 
@@ -1696,10 +1693,15 @@ async function drawPanel(
           {!(await home($)).startsWith('/Users/') && <Button key="site-mac" plain label="SkillKeeper for macOS" onPress={() => void openFile($, SITE)} />}
         </Box>
         {/* On a line of its own (owner, 2026-10-05). */}
-        <Box>
+        <Box gap={2}>
           <Button key="review-open" plain label="Leave a review" onPress={() => {
             void track($, 'feedback_open', { entry: 'settings' })
             void update($, review, () => 'ask' as const)
+          }} />
+          {/* The app's ladybug in Settings: the diagnostics to the clipboard, the report page opens with them. */}
+          <Button key="bug" plain label="🐞 Report a bug" onPress={press => {
+            void track($, 'bug_report_open')
+            void reportBug($, press.surface)
           }} />
         </Box>
         {/* The app's two-thumb review: 👍 thanks, 👎 asks what's wrong; both go to the same survey. */}
@@ -2491,27 +2493,16 @@ async function drawPanel(
               void update($, screen, () => 'notifications' as const)
             }}
           />
-          {/* Settings and the bug on the right; the pane's ✕ closes it. */}
-          <Box gap={2}>
-            <Button
-              key="bug"
-              plain
-              label="🐞"
-              onPress={press => {
-                void track($, 'bug_report_open')
-                void reportBug($, press.surface)
-              }}
-            />
-            <Button
-              key="settings"
-              plain
-              label="Settings"
-              onPress={() => {
-                void track($, 'settings_open')
-                void update($, screen, () => 'settings' as const)
-              }}
-            />
-          </Box>
+          {/* Settings on the right; the pane's ✕ closes it. */}
+          <Button
+            key="settings"
+            plain
+            label="Settings"
+            onPress={() => {
+              void track($, 'settings_open')
+              void update($, screen, () => 'settings' as const)
+            }}
+          />
         </Box>
       </Box>
       <Text> </Text>
