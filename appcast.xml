@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.14</title>
-            <pubDate>Mon, 09 Nov 2026 13:05:15 +0700</pubDate>
+            <pubDate>Mon, 09 Nov 2026 17:28:22 +0700</pubDate>
             <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.14</h2><p class="date">Release date: 9 Nov 2026</p><h3>New in 2.14</h3><ul><li>After the demo ends, the lists blur from top to bottom and stop scrolling until you add a license</li></ul></body></html>]]></description>
-            <sparkle:version>61</sparkle:version>
+            <sparkle:version>62</sparkle:version>
             <sparkle:shortVersionString>2.14</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5361138" type="application/octet-stream" sparkle:edSignature="YuRCFttH/5BUVdNUMxrQCtjxJ18VbozpEfGP0PptdtO+wOaRqZ98QhmHjZ8jKvBJ/ySGL7ZQvGFV+NH7ZJZ/Dg=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5367297" type="application/octet-stream" sparkle:edSignature="D5YJi5MUBezlfp/BcZX1KoiVd9rD+rF1wAk9qc0fpRgStS/CxVMBAFV9ZtCfT/zeR0lFRJoJUI5bkY4Y8Qx5CQ=="/>
         </item>
         <item>
             <title>2.13</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5307879" type="application/octet-stream" sparkle:edSignature="EZ4fHIzuveoODpaNogd3h1r17s5azpTjfDWtZKqicl3SHwdRy+RyTW+QD2sr45MmJpfyxb3v3VhDupU4Hs/pDQ=="/>
-        </item>
-        <item>
-            <title>2.12</title>
-            <pubDate>Thu, 05 Nov 2026 12:45:22 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.12</h2><p class="date">Release date: 5 Nov 2026</p><h3>New in 2.12</h3><ul><li>The free demo lasts 5 hours from install instead of 3 days; the mod shows the time left</li><li>The Rate app prompt appears 2 hours after install</li><li>The icons next to the bolt in the menu bar slide smoothly when the number changes width</li></ul></body></html>]]></description>
-            <sparkle:version>58</sparkle:version>
-            <sparkle:shortVersionString>2.12</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5252464" type="application/octet-stream" sparkle:edSignature="CRftto+XjIcuwNJS93gkCtWlxxdTwzvOL11NEbqPhDWI0pLVeiFytt+rED/hxpsK6U/ZytAf8gl/sQ2tp8hLCg=="/>
         </item>
     </channel>
 </rss>

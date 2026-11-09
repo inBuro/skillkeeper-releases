@@ -1206,6 +1206,41 @@ async function isNoticesLocked($: Engine): Promise<boolean> {
 }
 
 /** The buy page, tagged so a sale ties back to this install; the app's event for the click. */
+/** The site's feedback page, opened as the bug report (`?utm_content=bug`), the diagnostics in the fragment. */
+const BUG_REPORT_URL = 'https://skillkeeper.app/feedback?utm_content=bug'
+
+/**
+ * What a bug report carries, as the app's: versions, system and counts – never a skill's name,
+ * a path or a file. The person sees all of it on the page before anything is sent.
+ */
+async function bugDiagnostics($: Engine): Promise<Record<string, string | number | boolean>> {
+  const claude = await $.process.run(['claude', '--version'], { timeoutMs: 5_000 }).catch(() => undefined)
+  const dir = await home($)
+  return {
+    v: 1,
+    client: 'cc-mod',
+    version,
+    surface: surfaceName,
+    os: dir.startsWith('/Users/') ? 'macOS' : dir.startsWith('/home/') ? 'Linux' : 'Windows',
+    claude_code: claude?.exitCode === 0 ? claude.stdout.trim().slice(0, 40) : 'unknown',
+    skills: (await read($, library)).length,
+    extra_folders: extraFolders.length,
+    unlocked: await isUnlocked($),
+  }
+}
+
+/**
+ * The 🐞 in the footer: the diagnostics go to the clipboard (to paste anywhere) and the report
+ * page opens with the same ones attached, so the person has nothing else to do but write what broke.
+ */
+async function reportBug($: Engine, surface: string): Promise<void> {
+  const data = await bugDiagnostics($)
+  const json = JSON.stringify(data)
+  const fragment = btoa(json).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  void $.ui.copy({ text: `SkillKeeper bug report\n${JSON.stringify(data, null, 2)}`, surface }).catch(() => undefined)
+  await openFile($, `${BUG_REPORT_URL}#d=${fragment}`)
+}
+
 async function openBuy($: Engine, source: string): Promise<void> {
   const id = isOwnerHome(await home($)) ? OWNER_ID : ((await $.store.get('analyticsId')) as string | undefined)
   void track($, 'license_offer_click', { source }, false)
@@ -2456,16 +2491,27 @@ async function drawPanel(
               void update($, screen, () => 'notifications' as const)
             }}
           />
-          {/* Settings on the right; the pane's ✕ closes it. */}
-          <Button
-            key="settings"
-            plain
-            label="Settings"
-            onPress={() => {
-              void track($, 'settings_open')
-              void update($, screen, () => 'settings' as const)
-            }}
-          />
+          {/* Settings and the bug on the right; the pane's ✕ closes it. */}
+          <Box gap={2}>
+            <Button
+              key="bug"
+              plain
+              label="🐞"
+              onPress={press => {
+                void track($, 'bug_report_open')
+                void reportBug($, press.surface)
+              }}
+            />
+            <Button
+              key="settings"
+              plain
+              label="Settings"
+              onPress={() => {
+                void track($, 'settings_open')
+                void update($, screen, () => 'settings' as const)
+              }}
+            />
+          </Box>
         </Box>
       </Box>
       <Text> </Text>
