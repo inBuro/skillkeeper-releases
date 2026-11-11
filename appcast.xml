@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.15</title>
-            <pubDate>Tue, 10 Nov 2026 16:35:05 +0700</pubDate>
+            <pubDate>Wed, 11 Nov 2026 11:40:24 +0700</pubDate>
             <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.15</h2><p class="date">Release date: 10 Nov 2026</p><h3>New in 2.15</h3><ul><li>Connect several AI coding tools at once: a row of tool marks above the tabs switches between Claude Code, Codex, Cursor and Gemini CLI, and a right click stops monitoring one</li><li>Codex, Cursor and Gemini show the context of a session against the model window in the session card</li></ul></body></html>]]></description>
-            <sparkle:version>64</sparkle:version>
+            <sparkle:version>65</sparkle:version>
             <sparkle:shortVersionString>2.15</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5430306" type="application/octet-stream" sparkle:edSignature="NoCu8PU3EqrSA7mBZn4XntGfYZa/oF3ENwogct9i4UZyg6kEp29mJUsZv2tQzqCQCLUu/36Y0xhYsl4qS6alDQ=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5432312" type="application/octet-stream" sparkle:edSignature="mMsEqgdhxHfRagQCitFz0mBmYlsZFPskTkv7kMSdsLoS0w1TLS2qzel+bcUQXnfG/XkjRO7+aBt/jAPEwrg9AQ=="/>
         </item>
         <item>
             <title>2.14</title>
@@ -21,16 +21,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5362021" type="application/octet-stream" sparkle:edSignature="f0Evlb6q8md9HyCyuzdTLyagCAvR0B/6avie+tE4GyCaz08IfN2/OCIQrYt9Tvzonee3SchBPLS/pOy6HllXDg=="/>
-        </item>
-        <item>
-            <title>2.13</title>
-            <pubDate>Sat, 07 Nov 2026 15:08:00 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.13</h2><p class="date">Release date: 7 Nov 2026</p><h3>New in 2.13</h3><ul><li>Free plan keeps the Month window; 5h, 24h and Week need a license</li><li>Fixed: the notifications layer showed made-up sample cards next to the real ones</li><li>Fixed: scrolling and hovering over rows on the All tab was slow on a large history</li><li>Fixed: Show unused on the unused-skills card left the unused list folded, it now opens it</li></ul></body></html>]]></description>
-            <sparkle:version>60</sparkle:version>
-            <sparkle:shortVersionString>2.13</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="5307879" type="application/octet-stream" sparkle:edSignature="EZ4fHIzuveoODpaNogd3h1r17s5azpTjfDWtZKqicl3SHwdRy+RyTW+QD2sr45MmJpfyxb3v3VhDupU4Hs/pDQ=="/>
         </item>
     </channel>
 </rss>
