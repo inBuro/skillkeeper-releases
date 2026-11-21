@@ -78,7 +78,7 @@ All of these run on your machine, with fixed arguments and the path of a file th
 
 ## License
 
-Every feature is free for 7 days. One key works for the mod and the [macOS app](https://skillkeeper.app)
+Every feature is free for 5 hours from install. After that the 24h view stays free; the 5h, Week and Month views, skill edits and notifications come with a one-time license – no subscription. One key works for the mod and the [macOS app](https://skillkeeper.app)
 
 ## Feedback
 

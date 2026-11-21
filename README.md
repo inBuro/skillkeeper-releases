@@ -1,17 +1,17 @@
 # SkillKeeper releases
 
-Download and auto-update channel for [SkillKeeper](https://skillkeeper.app), a macOS menu bar app that shows which of your Claude Code skills actually fire, how often by day, week and month, and lets you tune their triggers inline without opening an editor.
+Download and auto-update channel for [SkillKeeper](https://skillkeeper.app), a macOS menu bar app that monitors the spend and behaviour of AI coding agents (Claude Code, Codex, Cursor and Gemini CLI): tokens and limits by skill, agent, session and tool, which skills fire and which never do, and notifications before something runs out or goes wrong.
 
 ## Install
 
 - **Direct download:** [SkillKeeper.dmg](https://github.com/inBuro/skillkeeper-releases/raw/main/SkillKeeper.dmg), then drag the app to Applications
 - **Homebrew:** `brew install --cask inBuro/apps/skillkeeper` (tap: [inBuro/homebrew-apps](https://github.com/inBuro/homebrew-apps))
 
-Requires macOS 13 Ventura or later. The app is signed with an Apple Developer ID and notarized, so it opens without Gatekeeper warnings.
+The app requires macOS 14 Sonoma or later. The app is signed with an Apple Developer ID and notarized, so it opens without Gatekeeper warnings.
 
 ## Claude Code mod (early access)
 
-The same popup inside Claude Code, on any OS. In Claude Code:
+The same popup inside Claude Code (the mod is for Claude Code only), on any OS. In Claude Code:
 
 ```
 /plugin marketplace add inBuro/skillkeeper-releases

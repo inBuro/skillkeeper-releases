@@ -10,6 +10,7 @@ import {
   parseExpiry,
   isKeyShaped,
   isPeriodOpen,
+  openView,
   isProOpen,
   activationError,
   needsRecheck,
@@ -145,8 +146,8 @@ const sessionStart = atom({ plugin: 'skillkeeper', key: 'sessionStart' } as cons
 const hidden = atom({ plugin: 'skillkeeper', key: 'hidden' } as const, null as Hidden | null)
 const baseline = atom({ plugin: 'skillkeeper', key: 'baseline' } as const, null as string[] | null)
 const EMPTY_ACTIVITY: Activity = { agents: {}, tools: {}, mcp: {}, commands: {}, sessions: {}, memory: {}, hooks: {}, plugins: {} }
-// As the app: a launch starts on All and Month (the free window); the sort, the dropdown kind and the
-// limit window are remembered.
+// As the app: a launch starts on All and Month while the trial or a key opens it, on 24h (the one free
+// window) otherwise (`openView`); the sort, the dropdown kind and the limit window are remembered.
 const DEFAULT_VIEW: View = {
   period: 'month',
   sort: 'count',
@@ -1195,7 +1196,7 @@ async function countTrialDay($: Engine): Promise<void> {
   await showTrial($, counted)
 }
 
-/** 5h, 24h, Month and skill edits: a good key, or the trial still running. */
+/** 5h, Week, Month and skill edits: a good key, or the trial still running. */
 async function isUnlocked($: Engine): Promise<boolean> {
   return !PAYWALL || (await read($, license)).isPro || (await read($, trial)).isActive
 }
@@ -1316,7 +1317,7 @@ async function setPeriod($: Engine, period: Period): Promise<void> {
   await update($, scroll, () => 0)
   if (!isPeriodOpen(period, await isUnlocked($))) {
     void track($, 'timeframe_locked', { value: period })
-    $.ui.toast('skillkeeper · 5h, 24h and Week need a license')
+    $.ui.toast('skillkeeper · 5h, Week and Month need a license')
     return
   }
   // The limit readout follows the period: the 5-hour limit for 5h and 24h, the week's
@@ -1357,7 +1358,7 @@ async function changeView($: Engine, change: (v: View) => View): Promise<void> {
  */
 async function chatReport($: Engine): Promise<string> {
   const now = await $.clock.now()
-  const v = await read($, view)
+  const v = openView(await read($, view), await isUnlocked($))
   const calls = await read($, history)
   const others = await read($, activity)
   const book = await read($, tokens)
@@ -1567,11 +1568,13 @@ async function drawPanel(
   const agentRuns = await read($, agentRunsAtom)
   const seenModels = Object.values(models).flatMap(m => Object.keys(m))
   const book = await read($, tokens)
-  const v = await read($, view)
+  const storedView = await read($, view)
   const lic = await read($, license)
   const trialView = await read($, trial)
-  // Paid after the trial: 5h, 24h, Month, skill edits, notifications; duplicate-trigger marks too, as in the app.
+  // Paid after the trial: 5h, Week, Month, skill edits, notifications; duplicate-trigger marks too, as in the app.
   const pro = isProOpen(lic.isPro || trialView.isActive)
+  // The trial is over and the period is Month (the launch default): shown as 24h, the free window.
+  const v = openView(storedView, pro)
   const isLocked = PAYWALL && trialView.isLoaded && !pro
   // Locked, the bell counts nothing, as the app's.
   const noticeCount = isLocked ? 0 : (await currentNotices($)).length

@@ -5,7 +5,7 @@
 
 import type { Period } from '../types'
 
-/** On: after the shared trial (trial.ts), 5h, 24h, Month and skill edits need a key. */
+/** On: after the shared trial (trial.ts), 5h, Week, Month and skill edits need a key. */
 export const PAYWALL = true
 
 export const ACTIVATE_URL = 'https://api.tinyapps.space/skillkeeper/activate'
@@ -35,8 +35,14 @@ export function activationError(text: string): string | undefined {
 
 export function isPeriodOpen(period: Period, isPro: boolean): boolean {
   if (!PAYWALL || isPro) return true
-  // Only Month stays free (owner, 2026-11-05; Week from 2026-10-19, 24h from 2026-10-15); 5h, 24h and Week need a license.
-  return period === 'month'
+  // Only 24h stays free (owner, 2026-11-21, as the app from build 70; Month was free from 2026-11-05,
+  // Week from 2026-10-19, 24h from 2026-10-15); 5h, Week and Month need a license.
+  return period === 'day'
+}
+
+/** The view as it can be shown: a period that needs a license falls back to 24h and its 5-hour limit, as the app's launch. */
+export function openView<V extends { period: Period; limit: 'five_hour' | 'seven_day' }>(v: V, isPro: boolean): V {
+  return isPeriodOpen(v.period, isPro) ? v : { ...v, period: 'day', limit: 'five_hour' }
 }
 
 /** What the store keeps about a key: its hash and the last verdict, never the key. */
