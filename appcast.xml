@@ -4,13 +4,13 @@
         <title>SkillKeeper</title>
         <item>
             <title>2.15</title>
-            <pubDate>Mon, 23 Nov 2026 23:22:01 +0700</pubDate>
-            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.15</h2><p class="date">Release date: 23 Nov 2026</p><h3>New in 2.15</h3><ul><li>Connect several AI coding tools at once: a row of tool marks above the tabs switches between Claude Code, Codex, Cursor and Gemini CLI, and a right click stops monitoring one</li><li>Codex, Cursor and Gemini show the context of a session against the model window in the session card</li></ul></body></html>]]></description>
-            <sparkle:version>73</sparkle:version>
+            <pubDate>Wed, 25 Nov 2026 14:59:41 +0700</pubDate>
+            <description><![CDATA[<html><head><meta charset='utf-8'><style>:root{color-scheme:light dark}body{font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:0 4px}h2{font-size:20px;margin:6px 0 4px}h3{font-size:13px;margin:16px 0 4px}p{margin:4px 0}.date{opacity:.6}ul{margin:4px 0;padding-left:20px}li{margin:4px 0}code{font:12px ui-monospace,Menlo,monospace}</style></head><body><h2>2.15</h2><p class="date">Release date: 25 Nov 2026</p><h3>New in 2.15</h3><ul><li>Connect several AI coding tools at once: a row of tool marks above the tabs switches between Claude Code, Codex, Cursor and Gemini CLI, and a right click stops monitoring one</li><li>Codex, Cursor and Gemini show the context of a session against the model window in the session card</li></ul></body></html>]]></description>
+            <sparkle:version>74</sparkle:version>
             <sparkle:shortVersionString>2.15</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="6244413" type="application/octet-stream" sparkle:edSignature="I7+oSz1CZqM7cois5maevn8kuPbJHGrRHkCqW3P67yz1zNq9Wrye828q3FhRSQDDh6bD7hBdRc4BgZdC72GICQ=="/>
+            <enclosure url="https://raw.githubusercontent.com/inBuro/skillkeeper-releases/main/SkillKeeper.zip" length="6247683" type="application/octet-stream" sparkle:edSignature="CjeXdjk24MoomtYZo5QiL9xhtT7uPfK2E7p5gd5Nw1KE/nip8XORVI1e38Hmy7E6UsZDhH2oez9WQ2pB31T2DQ=="/>
         </item>
         <item>
             <title>2.14</title>
